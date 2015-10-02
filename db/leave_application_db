@@ -1,0 +1,29 @@
+
+use leave_application_db;
+/*-------------------------------------------------------------------- CREATE TABLE --------------------------------------------------------------*/
+
+alter table `MT_USER` drop foreign key `FK_USER_EMPLOYEE`;
+drop table if exists `MT_EMPLOYEE`;
+create table if not exists `MT_EMPLOYEE` (
+    `EMPLOYEE_CODE` varchar(50) not null,
+    `EMPLOYEE_NAME` varchar(50) not null,
+    `DATE_OF_BIRTH` date default null,
+    `EMAIL` varchar(50) default null,
+    `PHONE_NO` varchar(20) default null,
+    
+    primary key (`EMPLOYEE_CODE`)
+)  engine=innodb;
+
+drop table if exists `MT_USER`;
+create table if not exists `MT_USER` (
+	`USER_ID` int(6) unsigned not null,
+	`USERNAME` varchar(50) not null unique,
+	`PASSWORD` varchar(256) not null,
+	`EMPLOYEE_CODE` varchar(50) not null,
+	
+	primary key (`USER_ID`),
+	constraint `FK_USER_EMPLOYEE` foreign key (`EMPLOYEE_CODE`)
+        references `leave_application_db`.`MT_EMPLOYEE` (`EMPLOYEE_CODE`)
+        on delete no action on update no action
+) engine = innodb;
+

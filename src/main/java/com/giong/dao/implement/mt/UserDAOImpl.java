@@ -7,10 +7,6 @@ import com.giong.dao.interfaces.mt.IUserDAO;
 import com.giong.model.mt.Mt_User;
 
 @Repository("userDAO")
-public class UserDAOImpl extends GenericDaoHibernateImpl<Mt_User>implements IUserDAO {
-	
-	public UserDAOImpl(Class<Mt_User> entityClass) {
-		super(entityClass);
-	}
-	
+public class UserDAOImpl extends GenericDaoHibernateImpl<Mt_User, Integer>implements IUserDAO {
+
 }

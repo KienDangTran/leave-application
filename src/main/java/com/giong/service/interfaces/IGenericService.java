@@ -1,9 +1,8 @@
 package com.giong.service.interfaces;
 
-import java.io.Serializable;
 import java.util.List;
 
-public interface IGenericService<T> {
+public interface IGenericService<T, K> {
 	
 	public void save(T entity);
 	
@@ -11,7 +10,7 @@ public interface IGenericService<T> {
 	
 	public void delete(T entity);
 	
-	public T find(Serializable entityID);
+	public T find(K entityID);
 	
 	public List<T> findAll();
 }

@@ -8,7 +8,7 @@
 		id="employeeService"
 		class="com.giong.service.implement.mt.EmployeeServiceImpl" >
 		<property
-			name="dao"
+			name="employeeDAO"
 			ref="employeeDAO" />
 	</bean>
 
@@ -16,7 +16,7 @@
 		id="userService"
 		class="com.giong.service.implement.mt.UserServiceImpl">
 		<property
-			name="dao"
+			name="userDAO"
 			ref="userDAO" />
 	</bean>
 

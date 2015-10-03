@@ -5,29 +5,45 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.giong.dao.implement.GenericDaoHibernateImpl;
-import com.giong.dao.implement.mt.UserDAOImpl;
+import com.giong.dao.interfaces.IGenericDAO;
+import com.giong.dao.interfaces.mt.IUserDAO;
 import com.giong.model.mt.Mt_User;
 import com.giong.service.implement.GenericServiceImpl;
 import com.giong.service.interfaces.mt.IUserService;
 
 @Transactional(readOnly = true)
 @Service("userService")
-public class UserServiceImpl extends GenericServiceImpl<Mt_User>implements IUserService {
+public class UserServiceImpl extends GenericServiceImpl<Mt_User, Integer>implements IUserService {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Autowired
-	@Qualifier("userDAO")
-	private UserDAOImpl dao;
+	private IUserDAO userDAO;
 	
-	@Override
-	public GenericDaoHibernateImpl<Mt_User> getDao() {
-		return this.dao;
+	
+	/*
+	 ***************************************	GETTER & SETTER	***************************************	
+	 */
+	public IUserDAO getUserDAO() {
+		return this.userDAO;
 	}
 	
-	public void setDao(UserDAOImpl dao) {
-		this.dao = dao;
+	public void setUserDAO(IUserDAO userDAO) {
+		this.userDAO = userDAO;
+	}
+	
+	
+	/*
+	 ***************************************	CONTRUCTORS	  ***************************************	
+	 */
+	
+	public UserServiceImpl() {
+	}
+	
+	
+	@Autowired
+	public UserServiceImpl(@Qualifier("userDAO") IGenericDAO<Mt_User, Integer> genericDAO) {
+		super(genericDAO);
+		this.userDAO = (IUserDAO) genericDAO;
 	}
 	
 }

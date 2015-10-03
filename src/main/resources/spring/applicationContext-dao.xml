@@ -2,16 +2,10 @@
 <beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<bean id="employeeDAO" class="com.giong.dao.implement.mt.EmployeeDAOImpl">
-		<constructor-arg type="java.lang.Class">
-			<value>com.giong.model.mt.Mt_Employee</value>
-		</constructor-arg>
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
 	<bean id="userDAO" class="com.giong.dao.implement.mt.UserDAOImpl">
-		<constructor-arg type="java.lang.Class">
-			<value>com.giong.model.mt.Mt_User</value>
-		</constructor-arg>
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 

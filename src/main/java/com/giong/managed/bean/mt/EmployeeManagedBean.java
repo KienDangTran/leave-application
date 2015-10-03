@@ -17,7 +17,7 @@ public class EmployeeManagedBean implements Serializable {
 	private static final String SUCCESS = "success";
 	private static final String ERROR = "error";
 	
-	@ManagedProperty(value = "#{EmployeeService}")
+	@ManagedProperty(value = "#{employeeService}")
 	IEmployeeService employeeService;
 	private String employee_code;
 	private String employee_name;

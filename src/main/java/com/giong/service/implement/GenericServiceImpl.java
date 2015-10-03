@@ -6,10 +6,11 @@ import java.util.List;
 import com.giong.dao.implement.GenericDAOImpl;
 import com.giong.service.interfaces.IGenericService;
 
-public abstract class GenericServiceImpl<T> implements IGenericService<T> {
+public abstract class GenericServiceImpl<T> implements IGenericService<T>, Serializable {
+	
+	private static final long serialVersionUID = 1L;
 	
 	private GenericDAOImpl<T> dao;
-	
 	
 	public abstract GenericDAOImpl<T> getDao();
 	

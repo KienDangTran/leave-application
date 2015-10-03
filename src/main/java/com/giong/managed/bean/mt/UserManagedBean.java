@@ -16,7 +16,7 @@ public class UserManagedBean implements Serializable {
 	private static final String SUCCESS = "success";
 	private static final String ERROR = "error";
 	
-	@ManagedProperty(value = "#{UserService}")
+	@ManagedProperty(value = "#{userService}")
 	IUserService userService;
 	private int user_id;
 	private String username;

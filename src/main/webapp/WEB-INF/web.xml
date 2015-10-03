@@ -12,7 +12,14 @@
 	<!-- Spring Context Configuration' s Path definition -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
-		<param-value>classpath:spring/application-config.xml</param-value>
+		<param-value>
+			classpath:spring/application-config.xml
+			classpath:spring/applicationContext-dao.xml
+			classpath:spring/applicationContext-datasource.xml
+			classpath:spring/applicationContext-beans.xml
+			classpath:spring/applicationContext-services.xml
+			classpath:spring/applicationContext-persistence-unit.xml
+		</param-value>
 	</context-param>
 
 

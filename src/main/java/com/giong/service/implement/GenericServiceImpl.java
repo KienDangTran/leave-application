@@ -3,16 +3,16 @@ package com.giong.service.implement;
 import java.io.Serializable;
 import java.util.List;
 
-import com.giong.dao.implement.GenericDAOImpl;
+import com.giong.dao.interfaces.IGenericDAO;
 import com.giong.service.interfaces.IGenericService;
 
 public abstract class GenericServiceImpl<T> implements IGenericService<T>, Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private GenericDAOImpl<T> dao;
+	private IGenericDAO<T> dao;
 	
-	public abstract GenericDAOImpl<T> getDao();
+	public abstract IGenericDAO<T> getDao();
 	
 	@Override
 	public void save(T entity) {

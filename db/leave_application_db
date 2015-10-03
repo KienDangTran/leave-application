@@ -27,3 +27,24 @@ create table if not exists `MT_USER` (
         on delete no action on update no action
 ) engine = innodb;
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+--SAMPLE DATA
+insert into MT_EMPLOYEE (EMPLOYEE_CODE, EMPLOYEE_NAME, DATE_OF_BIRTH, EMAIL, PHONE_NO) values ('EMP0000000', 'SYSTEM ADMINISTRATOR', null, null, null);
+insert into MT_USER (USER_ID, USERNAME, PASSWORD, EMPLOYEE_CODE) values (0, 'admin', 'admin', 'EMP0000000');
+
+select * from MT_EMPLOYEE;
+select * from MT_USER;
+

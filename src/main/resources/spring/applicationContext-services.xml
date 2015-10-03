@@ -6,7 +6,7 @@
 
 	<bean
 		id="employeeService"
-		class="com.giong.service.implement.mt.EmployeeServiceImpl">
+		class="com.giong.service.implement.mt.EmployeeServiceImpl" >
 		<property
 			name="dao"
 			ref="employeeDAO" />

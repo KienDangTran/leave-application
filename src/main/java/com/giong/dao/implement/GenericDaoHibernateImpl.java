@@ -4,15 +4,15 @@ import java.io.Serializable;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.giong.dao.interfaces.IGenericDAO;
 
-public abstract class GenericDAOImpl<T> implements Serializable, IGenericDAO<T> {
-	
-	private static final long serialVersionUID = 1L;
+public abstract class GenericDaoHibernateImpl<T> implements IGenericDAO<T> {
 	
 	private final Class<T> entityClass;
 	
+	@Autowired
 	private SessionFactory sessionFactory;
 	
 	public SessionFactory getSessionFactory() {
@@ -23,7 +23,7 @@ public abstract class GenericDAOImpl<T> implements Serializable, IGenericDAO<T> 
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public GenericDAOImpl(Class<T> entityClass) {
+	public GenericDaoHibernateImpl(Class<T> entityClass) {
 		super();
 		this.entityClass = entityClass;
 	}

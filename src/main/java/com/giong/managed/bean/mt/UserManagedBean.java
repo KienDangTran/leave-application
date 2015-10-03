@@ -69,7 +69,7 @@ public class UserManagedBean implements Serializable {
 			user.setUser_id(this.getUser_id());
 			user.setUsername(this.getUsername());
 			user.setPassword(this.getPassword());
-			this.getUserService().addUser(user);
+			this.getUserService().save(user);
 			return UserManagedBean.SUCCESS;
 		}
 		catch (final Exception e) {

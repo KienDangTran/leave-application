@@ -1,18 +1,8 @@
 package com.giong.dao.interfaces.mt;
 
-import java.util.List;
-
+import com.giong.dao.interfaces.IGenericDAO;
 import com.giong.model.mt.Mt_Employee;
 
-public interface IEmployeeDAO {
+public interface IEmployeeDAO extends IGenericDAO<Mt_Employee> {
 
-	public void addEmployee(Mt_Employee employee);
-
-	public void updateEmployee(Mt_Employee employee);
-
-	public void deleteEmployee(Mt_Employee employee);
-
-	public Mt_Employee getEmployeeByCode(String employeeCode);
-
-	public List<Mt_Employee> getEmployeeList();
 }

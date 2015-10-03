@@ -91,7 +91,7 @@ public class EmployeeManagedBean implements Serializable {
 			employee.setDate_of_birth(this.getDate_of_birth());
 			employee.setEmail(this.getEmail());
 			employee.setPhone_no(this.getPhone_no());
-			this.getEmployeeService().addEmployee(employee);
+			this.getEmployeeService().save(employee);
 			return EmployeeManagedBean.SUCCESS;
 		}
 		catch (final Exception e) {

@@ -23,24 +23,29 @@
 	<!-- Service Declaration -->
 	<bean
 		id="EmployeeService"
-		class="com.giong.service.implement.mt.EmployeeService">
+		class="com.giong.service.implement.mt.EmployeeServiceImpl">
 		<property
-			name="employeeDAO"
+			name="dao"
 			ref="EmployeeDAO" />
 	</bean>
 
 	<bean
 		id="UserService"
-		class="com.giong.service.implement.mt.UserService">
+		class="com.giong.service.implement.mt.UserServiceImpl">
 		<property
-			name="userDAO"
+			name="dao"
 			ref="UserDAO" />
 	</bean>
 
 	<!-- DAO Declaration -->
 	<bean
 		id="EmployeeDAO"
-		class="com.giong.dao.implement.mt.EmployeeDAO">
+		class="com.giong.dao.implement.mt.EmployeeDAOImpl">
+		<constructor-arg
+			index="0"
+			type="java.lang.Class">
+			<value>com.giong.model.mt.Mt_Employee</value>
+		</constructor-arg>
 		<property
 			name="sessionFactory"
 			ref="SessionFactory" />
@@ -48,7 +53,12 @@
 
 	<bean
 		id="UserDAO"
-		class="com.giong.dao.implement.mt.UserDAO">
+		class="com.giong.dao.implement.mt.UserDAOImpl">
+		<constructor-arg
+			index="0"
+			type="java.lang.Class">
+			<value>com.giong.model.mt.Mt_User</value>
+		</constructor-arg>
 		<property
 			name="sessionFactory"
 			ref="SessionFactory" />

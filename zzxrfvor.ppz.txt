@@ -1,0 +1,42 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	modified:   .classpath
+#	modified:   .gitignore
+#	new file:   .settings/org.eclipse.m2e.wtp.prefs
+#	modified:   .settings/org.eclipse.wst.common.component
+#	new file:   .settings/org.eclipse.wst.validation.prefs
+#
+# Changes not staged for commit:
+#	modified:   pom.xml
+#	deleted:    src/main/java/com/giong/dao/implement/mt/EmployeeDAO.java
+#	deleted:    src/main/java/com/giong/dao/implement/mt/UserDAO.java
+#	modified:   src/main/java/com/giong/dao/interfaces/mt/IEmployeeDAO.java
+#	modified:   src/main/java/com/giong/dao/interfaces/mt/IUserDAO.java
+#	modified:   src/main/java/com/giong/managed/bean/mt/EmployeeManagedBean.java
+#	modified:   src/main/java/com/giong/managed/bean/mt/UserManagedBean.java
+#	deleted:    src/main/java/com/giong/service/implement/mt/EmployeeService.java
+#	deleted:    src/main/java/com/giong/service/implement/mt/UserService.java
+#	modified:   src/main/java/com/giong/service/interfaces/mt/IEmployeeService.java
+#	modified:   src/main/java/com/giong/service/interfaces/mt/IUserService.java
+#	modified:   src/main/resources/spring/application-config.xml
+#	modified:   target/classes/logback.xml
+#	modified:   target/classes/spring/application-config.xml
+#	modified:   target/m2e-wtp/web-resources/META-INF/maven/com.giong/LeaveApplication/pom.properties
+#	modified:   target/m2e-wtp/web-resources/META-INF/maven/com.giong/LeaveApplication/pom.xml
+#	deleted:    target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst
+#	deleted:    target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst
+#
+# Untracked files:
+#	src/main/java/com/giong/dao/implement/GenericDAOImpl.java
+#	src/main/java/com/giong/dao/implement/mt/EmployeeDAOImpl.java
+#	src/main/java/com/giong/dao/implement/mt/UserDAOImpl.java
+#	src/main/java/com/giong/dao/interfaces/IGenericDAO.java
+#	src/main/java/com/giong/service/implement/GenericServiceImpl.java
+#	src/main/java/com/giong/service/implement/mt/EmployeeServiceImpl.java
+#	src/main/java/com/giong/service/implement/mt/UserServiceImpl.java
+#	src/main/java/com/giong/service/interfaces/IGenericService.java
+#
+

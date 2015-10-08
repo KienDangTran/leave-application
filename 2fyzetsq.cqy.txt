@@ -1,0 +1,72 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Changes to be committed:
+#	modified:   .classpath
+#	modified:   .project
+#	new file:   .settings/org.hibernate.eclipse.console.prefs
+#	modified:   .springBeans
+#
+# Changes not staged for commit:
+#	modified:   pom.xml
+#	deleted:    qn2qfkio.3tw.txt
+#	modified:   src/main/java/com/giong/dao/implement/mt/EmployeeDAOImpl.java
+#	modified:   src/main/java/com/giong/dao/implement/mt/UserDAOImpl.java
+#	modified:   src/main/java/com/giong/dao/interfaces/mt/IEmployeeDAO.java
+#	modified:   src/main/java/com/giong/dao/interfaces/mt/IUserDAO.java
+#	deleted:    src/main/java/com/giong/managed/bean/mt/EmployeeManagedBean.java
+#	deleted:    src/main/java/com/giong/managed/bean/mt/UserManagedBean.java
+#	deleted:    src/main/java/com/giong/model/mt/Mt_Employee.java
+#	deleted:    src/main/java/com/giong/model/mt/Mt_User.java
+#	modified:   src/main/java/com/giong/service/implement/mt/EmployeeServiceImpl.java
+#	modified:   src/main/java/com/giong/service/implement/mt/UserServiceImpl.java
+#	modified:   src/main/java/com/giong/service/interfaces/mt/IEmployeeService.java
+#	modified:   src/main/java/com/giong/service/interfaces/mt/IUserService.java
+#	modified:   src/main/resources/spring/application-config.xml
+#	modified:   src/main/resources/spring/applicationContext-beans.xml
+#	modified:   src/main/resources/spring/applicationContext-dao.xml
+#	modified:   src/main/resources/spring/applicationContext-persistence-unit.xml
+#	modified:   src/main/resources/spring/applicationContext-services.xml
+#	modified:   src/main/webapp/WEB-INF/faces-config.xml
+#	modified:   src/main/webapp/WEB-INF/web.xml
+#	modified:   src/main/webapp/home.xhtml
+#	modified:   target/classes/spring/application-config.xml
+#	modified:   target/m2e-wtp/web-resources/META-INF/maven/com.giong/LeaveApplication/pom.properties
+#	modified:   target/m2e-wtp/web-resources/META-INF/maven/com.giong/LeaveApplication/pom.xml
+#	deleted:    zzxrfvor.ppz.txt
+#
+# Untracked files:
+#	db/drop_all_table.sql
+#	db/leave_application.mwb
+#	db/leave_application_db.sql
+#	db/sample_data.sql
+#	src/main/java/com/giong/constant/
+#	src/main/java/com/giong/dao/implement/mt/PermissonDAOImpl.java
+#	src/main/java/com/giong/dao/implement/mt/RoleDAOImpl.java
+#	src/main/java/com/giong/dao/implement/mt/RolePermissionGrantedDAOImpl.java
+#	src/main/java/com/giong/dao/implement/mt/UserRoleDAOImpl.java
+#	src/main/java/com/giong/dao/interfaces/IRolePermissionGrantedDAO.java
+#	src/main/java/com/giong/dao/interfaces/mt/IPermissonDAO.java
+#	src/main/java/com/giong/dao/interfaces/mt/IRoleDAO.java
+#	src/main/java/com/giong/dao/interfaces/mt/IUserRoleDAO.java
+#	src/main/java/com/giong/managedbean/
+#	src/main/java/com/giong/model/BaseEntity.java
+#	src/main/java/com/giong/model/BasePK.java
+#	src/main/java/com/giong/model/mt/MtEmployee.java
+#	src/main/java/com/giong/model/mt/MtPermission.java
+#	src/main/java/com/giong/model/mt/MtRole.java
+#	src/main/java/com/giong/model/mt/MtRolePermissionGranted.java
+#	src/main/java/com/giong/model/mt/MtRolePermissionGrantedPK.java
+#	src/main/java/com/giong/model/mt/MtUser.java
+#	src/main/java/com/giong/model/mt/MtUserRole.java
+#	src/main/java/com/giong/model/mt/MtUserRolePK.java
+#	src/main/java/com/giong/service/implement/mt/RoleServiceImpl.java
+#	src/main/java/com/giong/service/interfaces/mt/IRoleService.java
+#	src/main/java/com/giong/util/
+#	src/main/resources/spring/applicationContext-security.xml
+#	src/main/resources/taglib/
+#	src/main/webapp/faces/secure/
+#	src/main/webapp/faces/unsecure/
+#
+

@@ -4,9 +4,9 @@ import org.springframework.stereotype.Repository;
 
 import com.giong.dao.implement.GenericDaoHibernateImpl;
 import com.giong.dao.interfaces.mt.IEmployeeDAO;
-import com.giong.model.mt.Mt_Employee;
+import com.giong.model.mt.MtEmployee;
 
-@Repository("employeeDAO")
-public class EmployeeDAOImpl extends GenericDaoHibernateImpl<Mt_Employee, String>implements IEmployeeDAO {
+@Repository
+public class EmployeeDAOImpl extends GenericDaoHibernateImpl<MtEmployee, String> implements IEmployeeDAO {
 
 }

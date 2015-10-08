@@ -1,0 +1,92 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Employee Management</title>
+</h:head>
+
+<h:body>
+	<p:panel id="mainPanel" header="EMPLOYEE DETAIL">
+		<h:form>
+			<table border="0">
+				<tr>
+					<!-- Employee Code -->
+					<td>
+						<h:outputLabel value="Employee Code" />
+					</td>
+					<td>
+						<p:inputText id="employeeCode" value="#{employeeManagedBean.currentEmployee.employee_code}" label="Employee Code" required="true"
+							disabled="#{not empty employeeManagedBean.currentEmployee.employee_code}">
+							<p:ajax event="blur" update="employeeCodeMsg" />
+						</p:inputText>
+					</td>
+					<td>
+						<p:message id="employeeCodeMsg" for="employeeCode" display="icon" />
+					</td>
+				</tr>
+
+				<tr>
+					<!-- Employee Name -->
+					<td>
+						<h:outputLabel value="Employee Name" />
+					</td>
+					<td>
+						<p:inputText id="employeeName" value="#{employeeManagedBean.currentEmployee.employee_name}" required="true" label="Employee Name">
+							<p:ajax event="blur" update="employeeNameMsg" />
+						</p:inputText>
+					</td>
+					<td>
+						<p:message id="employeeNameMsg" for="employeeName" display="icon" />
+					</td>
+				</tr>
+
+				<tr>
+					<!-- Date of Birth -->
+					<td>
+						<h:outputLabel value="Date of Birth" />
+					</td>
+					<td>
+						<p:calendar id="dob" value="#{employeeManagedBean.currentEmployee.date_of_birth}" pattern="dd/MM/yyyy" label="Date of Birth">
+							<p:ajax event="blur" update="dobMsg" />
+						</p:calendar>
+					</td>
+					<td>
+						<p:message id="dobMsg" for="dob" display="icon" />
+					</td>
+				</tr>
+
+				<tr>
+					<!-- Email -->
+					<td>
+						<h:outputLabel value="Email" />
+					</td>
+					<td>
+						<p:inputText id="email" value="#{employeeManagedBean.currentEmployee.email}" label="Email">
+							<p:ajax event="blur" update="emailMsg" />
+						</p:inputText>
+					</td>
+					<td>
+						<p:message id="emailMsg" for="email" display="icon" />
+					</td>
+				</tr>
+
+				<tr>
+					<!-- Phone -->
+					<td>
+						<h:outputLabel value="Phone No." />
+					</td>
+					<td>
+						<p:inputText id="phone" value="#{employeeManagedBean.currentEmployee.phone_no}" label="Phone No.">
+							<p:ajax event="blur" update="phoneMsg" />
+						</p:inputText>
+					</td>
+					<td>
+						<p:message id="phoneMsg" for="phone" display="icon" />
+					</td>
+				</tr>
+			</table>
+
+			<p:commandButton id="addUser" value="Add" action="#{employeeManagedBean.addEmployee}" ajax="false" />
+			<p:commandButton id="reset" value="Reset" action="#{employeeManagedBean.reset}" ajax="false" />
+		</h:form>
+	</p:panel>
+</h:body>
+</html>

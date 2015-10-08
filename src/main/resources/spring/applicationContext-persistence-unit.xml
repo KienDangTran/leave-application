@@ -3,10 +3,9 @@
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="datasource" />
-		<property name="annotatedClasses">
+		<property name="packagesToScan">
 			<list>
-				<value>com.giong.model.mt.Mt_User</value>
-				<value>com.giong.model.mt.Mt_Employee</value>
+				<value>com.giong.model</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

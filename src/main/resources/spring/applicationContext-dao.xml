@@ -5,7 +5,23 @@
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 
+	<bean id="permissonDAO" class="com.giong.dao.implement.mt.PermissonDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="roleDAO" class="com.giong.dao.implement.mt.RoleDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="rolePermissionGrantedDAO" class="com.giong.dao.implement.mt.RolePermissionGrantedDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
 	<bean id="userDAO" class="com.giong.dao.implement.mt.UserDAOImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+	<bean id="userRoleDAO" class="com.giong.dao.implement.mt.UserRoleDAOImpl">
 		<property name="sessionFactory" ref="sessionFactory" />
 	</bean>
 

@@ -7,13 +7,13 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.giong.dao.interfaces.IGenericDAO;
 import com.giong.dao.interfaces.mt.IEmployeeDAO;
-import com.giong.model.mt.Mt_Employee;
+import com.giong.model.mt.MtEmployee;
 import com.giong.service.implement.GenericServiceImpl;
 import com.giong.service.interfaces.mt.IEmployeeService;
 
-@Transactional(readOnly = true)
 @Service("employeeService")
-public class EmployeeServiceImpl extends GenericServiceImpl<Mt_Employee, String>implements IEmployeeService {
+@Transactional(readOnly = true)
+public class EmployeeServiceImpl extends GenericServiceImpl<MtEmployee, String> implements IEmployeeService {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -38,7 +38,7 @@ public class EmployeeServiceImpl extends GenericServiceImpl<Mt_Employee, String>
 	}
 	
 	@Autowired
-	public EmployeeServiceImpl(@Qualifier("employeeDAO") IGenericDAO<Mt_Employee, String> genericDAO) {
+	public EmployeeServiceImpl(@Qualifier("employeeDAO") IGenericDAO<MtEmployee, String> genericDAO) {
 		super(genericDAO);
 		this.employeeDAO = (IEmployeeDAO) genericDAO;
 	}

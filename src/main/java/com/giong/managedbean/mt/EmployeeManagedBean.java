@@ -1,34 +1,36 @@
-package com.giong.managed.bean.mt;
+package com.giong.managedbean.mt;
 
-import java.io.Serializable;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 
-import com.giong.model.mt.Mt_Employee;
+import com.giong.managedbean.AbtractManagedBean;
+import com.giong.model.mt.MtEmployee;
 import com.giong.service.interfaces.mt.IEmployeeService;
 
 @ManagedBean(name = "employeeManagedBean")
 @ViewScoped
-public class EmployeeManagedBean implements Serializable {
+public class EmployeeManagedBean extends AbtractManagedBean {
 	
 	private static final long serialVersionUID = 1L;
 	
-	private Mt_Employee currentEmployee = new Mt_Employee();
+	private MtEmployee currentEmployee;
+	private final List<MtEmployee> allEmployees = this.employeeService.findAll();
 	
 	@ManagedProperty(value = "#{employeeService}")
 	IEmployeeService employeeService;
 	
 	/*
-	 ***************************************	GETTER & SETTER	***************************************	
+	 ***************************************	GETTER & SETTER		***************************************	
 	 */
 	
-	public Mt_Employee getCurrentEmployee() {
+	public MtEmployee getCurrentEmployee() {
 		return this.currentEmployee;
 	}
 	
-	public void setCurrentEmployee(Mt_Employee currentEmployee) {
+	public void setCurrentEmployee(MtEmployee currentEmployee) {
 		this.currentEmployee = currentEmployee;
 	}
 	
@@ -40,15 +42,19 @@ public class EmployeeManagedBean implements Serializable {
 		this.employeeService = employeeService;
 	}
 	
-	/*
-	 ***************************************	GETTER & SETTER		***************************************	
-	 */
+	public List<MtEmployee> getAllEmployees() {
+		return this.allEmployees;
+	}
 	
+	
+	/*
+	 ***************************************	ACTION METHOD	***************************************	
+	 */
 	public void addEmployee() {
 		this.getEmployeeService().save(this.currentEmployee);
 	}
 	
 	public void reset() {
-		this.currentEmployee = new Mt_Employee();
+		this.currentEmployee = new MtEmployee();
 	}
 }

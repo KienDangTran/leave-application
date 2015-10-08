@@ -13,6 +13,7 @@
 		<config>src/main/resources/spring/applicationContext-services.xml</config>
 		<config>src/main/resources/spring/applicationContext-datasource.xml</config>
 		<config>src/main/resources/spring/applicationContext-persistence-unit.xml</config>
+		<config>src/main/resources/spring/applicationContext-security.xml</config>
 	</configs>
 	<autoconfigs>
 	</autoconfigs>

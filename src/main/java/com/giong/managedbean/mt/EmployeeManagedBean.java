@@ -17,7 +17,7 @@ public class EmployeeManagedBean extends AbtractManagedBean {
 	private static final long serialVersionUID = 1L;
 	
 	private MtEmployee currentEmployee;
-	private final List<MtEmployee> allEmployees = this.employeeService.findAll();
+	private List<MtEmployee> allEmployees;
 	
 	@ManagedProperty(value = "#{employeeService}")
 	IEmployeeService employeeService;
@@ -43,6 +43,7 @@ public class EmployeeManagedBean extends AbtractManagedBean {
 	}
 	
 	public List<MtEmployee> getAllEmployees() {
+		this.allEmployees = this.employeeService.findAll();
 		return this.allEmployees;
 	}
 	

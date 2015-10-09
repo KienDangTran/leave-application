@@ -15,6 +15,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.giong.constant.Role;
 import com.giong.dao.interfaces.IGenericDAO;
 import com.giong.dao.interfaces.mt.IUserDAO;
 import com.giong.model.mt.MtUser;
@@ -70,17 +71,29 @@ public class UserServiceImpl extends GenericServiceImpl<MtUser, Integer> impleme
 	}
 	
 	private Collection<? extends GrantedAuthority> getAuthorities(List<MtUserRole> rolesOfUser) {
-		final List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		for (final MtUserRole userRole : rolesOfUser) {
-			authorities.add(UserServiceImpl.getGrantedAuthority(userRole.getId().getRoleCode()));
-		}
+		final List<GrantedAuthority> authorities = UserServiceImpl.getGrantedAuthorities(this.getRoles(rolesOfUser));
 		return authorities;
 	}
 	
-	public static GrantedAuthority getGrantedAuthority(String roleCode) {
-		final GrantedAuthority grantedAuthority = new SimpleGrantedAuthority(roleCode);
+	private List<String> getRoles(List<MtUserRole> rolesOfUser) {
 		
-		return grantedAuthority;
+		final List<String> roles = new ArrayList<String>();
+		String roleCode;
+		for (final MtUserRole userRole : rolesOfUser) {
+			roleCode = userRole.getId().getRoleCode();
+			if (Role.SYS_ADMIN.equalsIgnoreCase(roleCode) && !roles.contains(roleCode)) {
+				roles.add(roleCode);
+			}
+		}
+		return roles;
+	}
+	
+	public static List<GrantedAuthority> getGrantedAuthorities(List<String> roleCode) {
+		final List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		for (final String role : roleCode) {
+			authorities.add(new SimpleGrantedAuthority(role));
+		}
+		return authorities;
 	}
 	
 }

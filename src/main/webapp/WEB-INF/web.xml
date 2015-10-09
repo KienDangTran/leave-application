@@ -92,6 +92,6 @@
 
 	<welcome-file-list>
 		<!-- Welcome Page -->
-		<welcome-file>home.xhtml</welcome-file>
+		<welcome-file>login.xhtml</welcome-file>
 	</welcome-file-list>
 </web-app>

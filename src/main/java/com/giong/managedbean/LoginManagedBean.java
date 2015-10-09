@@ -14,6 +14,10 @@ import org.springframework.security.core.context.SecurityContextHolder;
 @RequestScoped
 public class LoginManagedBean {
 	
+	public static final String LOGIN_SUCCESS = "success";
+	public static final String LOGIN_FAIL = "fail";
+	public static final String LOGGEDOUT = "loggedout";
+	
 	private String username = null;
 	private String password = null;
 	
@@ -60,9 +64,9 @@ public class LoginManagedBean {
 		}
 		catch (final AuthenticationException e) {
 			e.printStackTrace();
-			return "incorrect";
+			return LoginManagedBean.LOGIN_FAIL;
 		}
-		return "correct";
+		return LoginManagedBean.LOGIN_SUCCESS;
 	}
 	
 	public String cancel() {
@@ -71,7 +75,7 @@ public class LoginManagedBean {
 	
 	public String logout() {
 		SecurityContextHolder.clearContext();
-		return "loggedout";
+		return LOGGEDOUT;
 	}
 	
 }

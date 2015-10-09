@@ -1,29 +1,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets" xmlns:sec="http://www.springframework.org/security/tags">
 <h:head>
 	<title>Employee Management</title>
 </h:head>
 
 <h:body>
-	<h:form>
-		<p:dataTable id="tblEmployees" value="#{employeeManagedBean.allEmployees}" rowKey="row" var="employee" rows="25">
-			<p:column>
-				<h:outputText>#{row}</h:outputText>
-			</p:column>
+	<sec:authorize access="ROLE_ADMIN">
+		<h:form>
+			<p:dataTable id="tblEmployees" value="#{employeeManagedBean.allEmployees}" rowKey="row" var="employee" rows="25">
+				<p:column>
+					<h:outputText>#{row}</h:outputText>
+				</p:column>
 
-			<!-- Employee Code -->
-			<p:column>
-				<f:facet name="header">Employee Code</f:facet>
-				<p:commandLink value="#{employee.employee_code}" \ action="#{employeeManagedBean.setCurrentEmployee(employee)}" />
-			</p:column>
+				<!-- Employee Code -->
+				<p:column>
+					<f:facet name="header">Employee Code</f:facet>
+					<p:commandLink value="#{employee.employee_code}" \ action="#{employeeManagedBean.setCurrentEmployee(employee)}" />
+				</p:column>
 
-			<!-- Employee Name -->
-			<p:column>
-				<f:facet name="header">Employee Name</f:facet>
-				<h:outputText value="#{employee.employee_name}" />
-			</p:column>
+				<!-- Employee Name -->
+				<p:column>
+					<f:facet name="header">Employee Name</f:facet>
+					<h:outputText value="#{employee.employee_name}" />
+				</p:column>
 
-		</p:dataTable>
-	</h:form>
+			</p:dataTable>
+		</h:form>
+	</sec:authorize>
 </h:body>
 </html>

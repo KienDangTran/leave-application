@@ -2,17 +2,42 @@
 <faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
 	version="2.2">
 
-	<!-- JSF and Spring are integrated -->
 	<application>
+		<!-- Enable Spring -->
 		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
 	</application>
 
+
 	<!-- configuration of navigation rules -->
 	<navigation-rule>
-		<from-view-id>/home.xhtml</from-view-id>
+		<!-- navigation-rule for login.xhtml -->
+		<from-view-id>/login.xhtml</from-view-id>
+		<!-- navigation-case for method login() -->
+		<navigation-case>
+			<from-action>#{loginManagedBean.login}</from-action>
+			<from-outcome>success</from-outcome>
+			<to-view-id>/faces/home.xhtml</to-view-id>
+		</navigation-case>
+		<!-- navigation-case for method login() -->
+		<navigation-case>
+			<from-action>#{loginManagedBean.login}</from-action>
+			<from-outcome>fail</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+
+	<navigation-rule>
+		<from-view-id>/faces/home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>error</from-outcome>
 			<to-view-id>/faces/error.xhtml</to-view-id>
+		</navigation-case>
+		<!-- navigation case for method logout() -->
+		<navigation-case>
+			<from-action>#{loginManagedBean.logout}</from-action>
+			<from-outcome>loggedout</from-outcome>
+			<to-view-id>/login.xhtml</to-view-id>
+			<redirect></redirect>
 		</navigation-case>
 	</navigation-rule>
 

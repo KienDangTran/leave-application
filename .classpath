@@ -36,7 +36,7 @@
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-tx/4.2.1.RELEASE/spring-tx-4.2.1.RELEASE.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-orm/4.2.1.RELEASE/spring-orm-4.2.1.RELEASE.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-jdbc/4.2.1.RELEASE/spring-jdbc-4.2.1.RELEASE.jar"/>
-	<classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-core/4.0.2.RELEASE/spring-security-core-4.0.2.RELEASE.jar"/>
+	<classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-core/4.0.2.RELEASE/spring-security-core-4.0.2.RELEASE.jar" sourcepath="/M2_REPO"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-config/4.0.2.RELEASE/spring-security-config-4.0.2.RELEASE.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/security/spring-security-web/4.0.2.RELEASE/spring-security-web-4.0.2.RELEASE.jar"/>
 	<classpathentry kind="var" path="M2_REPO/org/springframework/spring-test/4.2.1.RELEASE/spring-test-4.2.1.RELEASE.jar"/>

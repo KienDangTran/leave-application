@@ -6,4 +6,5 @@ import com.giong.model.mt.MtUser;
 public interface IUserDAO extends IGenericDAO<MtUser, Integer> {
 	
 	public MtUser loadUserByUsername(String username);
+	
 }

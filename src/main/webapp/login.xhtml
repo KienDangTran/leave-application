@@ -1,32 +1,30 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 <h:head>
-	<title>Login</title>
+	<title>#{i18n['login']}</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </h:head>
 <h:body>
-	<div align="right" style="">
-		<h:form id="frmLogin" prependId="false">
-			<div id="loginFieldsPanel">
-				<div id="loginFieldUsrContId">
-					<h:outputText id="outTxtUsernameId" value="Username: " name="outTxtUsernameNm"></h:outputText>
-					<h:inputText id="username" required="true" value="#{loginManagedBean.username}" requiredMessage="Please enter username"></h:inputText>
-					<h:outputLabel id="outLblUsernameId" for="userName" name="outLblUsernameNm"></h:outputLabel>
+	<div align="center" style="">
+		<h1>#{i18n['welcome_to_leave_application']}</h1>
+		<p:panel header="#{i18n['login']}">
+			<h:form id="frmLogin">
+				<p:growl showDetail="false" life="3000" />
+				<h:panelGrid columns="2">
+					<h:outputLabel for="username" value="#{i18n['username']} " styleClass="label" />
+					<h:inputText id="username" required="true" value="#{loginManagedBean.username}" requiredMessage="#{i18n['validator.please_enter_username']}" />
+
+					<h:outputLabel for="password" value="#{i18n['password']} " styleClass="label" />
+					<h:inputSecret id="password" required="true" value="#{loginManagedBean.password}" requiredMessage="#{i18n['validator.please_enter_password']}" name="inTxtPasswordNm"></h:inputSecret>
+				</h:panelGrid>
+				<div>
+					<h:messages title="#{i18n['error']}" />
 				</div>
-				<div id="loginFieldPassContId">
-					<h:outputText id="outTxtPasswordId" value="Password: " name="outTxtPasswordNm"></h:outputText>
-					<h:inputSecret id="password" required="true" value="#{loginManagedBean.password}" requiredMessage="Please enter password" name="inTxtPasswordNm"></h:inputSecret>
-					<h:outputLabel id="outLblPasswordId" for="password" name="outLblPasswordNm"></h:outputLabel>
+				<div>
+					<h:commandButton id="btnLogin" value="#{i18n['login']}" action="#{loginManagedBean.login}" />
 				</div>
-			</div>
-			<div id="loginBtnPanel">
-				<h:commandButton id="btnLoginId" value="Login" action="#{loginManagedBean.login}" styleClass="loginPanelBtn"></h:commandButton>
-				<h:commandButton id="btnCancelId" value="Cancel" action="#{loginManagedBean.cancel}" styleClass="loginPanelBtn" immediate="true" update="frmLogin"></h:commandButton>
-			</div>
-		</h:form>
-	</div>
-	<div>
-		<h:messages></h:messages>
+			</h:form>
+		</p:panel>
 	</div>
 </h:body>
 </html>

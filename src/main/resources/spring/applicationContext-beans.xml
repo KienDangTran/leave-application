@@ -1,14 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="mtEmployee" class="com.giong.model.mt.MtEmployee" />
-	<bean id="mtPermission" class="com.giong.model.mt.MtPermission" />
-	<bean id="mtRole" class="com.giong.model.mt.MtRole" />
-	<bean id="mtRolePermissionGranted" class="com.giong.model.mt.MtRolePermissionGranted" />
-	<bean id="mtRolePermissionGrantedPK" class="com.giong.model.mt.MtRolePermissionGrantedPK" />
-	<bean id="mtUser" class="com.giong.model.mt.MtUser" />
-	<bean id="mtUserRole" class="com.giong.model.mt.MtUserRole" />
-	<bean id="mtUserRolePK" class="com.giong.model.mt.MtUserRolePK" />
+	<bean
+		id="mtEmployee"
+		class="com.giong.model.mt.MtEmployee" />
+	<bean
+		id="mtPermission"
+		class="com.giong.model.mt.MtPermission" />
+	<bean
+		id="mtRole"
+		class="com.giong.model.mt.MtRole" />
+	<bean
+		id="mtRolePermissionGranted"
+		class="com.giong.model.mt.MtRolePermissionGranted" />
+	<bean
+		id="mtRolePermissionGrantedPK"
+		class="com.giong.model.mt.MtRolePermissionGrantedPK" />
+	<bean
+		id="mtUser"
+		class="com.giong.model.mt.MtUser" />
+	<bean
+		id="mtUserRole"
+		class="com.giong.model.mt.MtUserRole" />
+	<bean
+		id="mtUserRolePK"
+		class="com.giong.model.mt.MtUserRolePK" />
 
 </beans>

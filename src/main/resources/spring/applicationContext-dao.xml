@@ -1,28 +1,55 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="employeeDAO" class="com.giong.dao.implement.mt.EmployeeDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<bean
+		id="employeeDAO"
+		class="com.giong.dao.implement.mt.EmployeeDAOImpl">
+		<property
+			name="sessionFactory"
+			ref="sessionFactory" />
 	</bean>
 
-	<bean id="permissonDAO" class="com.giong.dao.implement.mt.PermissonDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<bean
+		id="permissonDAO"
+		class="com.giong.dao.implement.mt.PermissonDAOImpl">
+		<property
+			name="sessionFactory"
+			ref="sessionFactory" />
 	</bean>
 
-	<bean id="roleDAO" class="com.giong.dao.implement.mt.RoleDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<bean
+		id="roleDAO"
+		class="com.giong.dao.implement.mt.RoleDAOImpl">
+		<property
+			name="sessionFactory"
+			ref="sessionFactory" />
 	</bean>
 
-	<bean id="rolePermissionGrantedDAO" class="com.giong.dao.implement.mt.RolePermissionGrantedDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<bean
+		id="rolePermissionGrantedDAO"
+		class="com.giong.dao.implement.mt.RolePermissionGrantedDAOImpl">
+		<property
+			name="sessionFactory"
+			ref="sessionFactory" />
 	</bean>
 
-	<bean id="userDAO" class="com.giong.dao.implement.mt.UserDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<bean
+		id="userDAO"
+		class="com.giong.dao.implement.mt.UserDAOImpl">
+		<property
+			name="sessionFactory"
+			ref="sessionFactory" />
 	</bean>
 
-	<bean id="userRoleDAO" class="com.giong.dao.implement.mt.UserRoleDAOImpl">
-		<property name="sessionFactory" ref="sessionFactory" />
+	<bean
+		id="userRoleDAO"
+		class="com.giong.dao.implement.mt.UserRoleDAOImpl">
+		<property
+			name="sessionFactory"
+			ref="sessionFactory" />
 	</bean>
 
 </beans>

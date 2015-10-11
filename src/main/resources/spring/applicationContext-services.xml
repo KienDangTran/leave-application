@@ -1,17 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-	<bean id="employeeService" class="com.giong.service.implement.mt.EmployeeServiceImpl">
-		<property name="employeeDAO" ref="employeeDAO" />
+	<bean
+		id="employeeService"
+		class="com.giong.service.implement.mt.EmployeeServiceImpl">
+		<property
+			name="employeeDAO"
+			ref="employeeDAO" />
 	</bean>
 
-	<bean id="roleService" class="com.giong.service.implement.mt.RoleServiceImpl">
-		<property name="roleDAO" ref="roleDAO" />
+	<bean
+		id="roleService"
+		class="com.giong.service.implement.mt.RoleServiceImpl">
+		<property
+			name="roleDAO"
+			ref="roleDAO" />
 	</bean>
 
-	<bean id="userService" class="com.giong.service.implement.mt.UserServiceImpl">
-		<property name="userDAO" ref="userDAO" />
+	<bean
+		id="userService"
+		class="com.giong.service.implement.mt.UserServiceImpl">
+		<property
+			name="userDAO"
+			ref="userDAO" />
 	</bean>
 
 </beans>

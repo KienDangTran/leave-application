@@ -39,7 +39,7 @@ public class MtUser extends BaseEntity {
 	private String username;
 	
 	//bi-directional one-to-one association to MtEmployee
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "EMPLOYEE_CODE", insertable = false, updatable = false)
 	private MtEmployee mtEmployee;
 	

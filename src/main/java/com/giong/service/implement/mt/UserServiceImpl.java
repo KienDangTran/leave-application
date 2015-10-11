@@ -58,6 +58,10 @@ public class UserServiceImpl extends GenericServiceImpl<MtUser, Integer> impleme
 		this.userDAO = (IUserDAO) genericDAO;
 	}
 	
+	
+	/*
+	 ***************************************	OTHER METHODS	  ***************************************	
+	 */
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		final MtUser domainUser = this.userDAO.loadUserByUsername(username);
@@ -94,6 +98,11 @@ public class UserServiceImpl extends GenericServiceImpl<MtUser, Integer> impleme
 			authorities.add(new SimpleGrantedAuthority(role));
 		}
 		return authorities;
+	}
+	
+	@Override
+	public MtUser getUserByUsername(String username) {
+		return this.userDAO.loadUserByUsername(username);
 	}
 	
 }

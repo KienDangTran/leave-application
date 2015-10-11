@@ -3,6 +3,7 @@ package com.giong.managedbean;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -10,9 +11,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 
+import com.giong.model.mt.MtUser;
+import com.giong.service.interfaces.mt.IUserService;
+
 @ManagedBean(name = "loginManagedBean")
 @RequestScoped
-public class LoginManagedBean {
+public class LoginManagedBean extends AbtractManagedBean {
+	
+	private static final long serialVersionUID = 1L;
 	
 	public static final String LOGIN_SUCCESS = "success";
 	public static final String LOGIN_FAIL = "fail";
@@ -22,7 +28,10 @@ public class LoginManagedBean {
 	private String password = null;
 	
 	@ManagedProperty(value = "#{authenticationManager}")
-	private AuthenticationManager authenticationManager = null;
+	AuthenticationManager authenticationManager = null;
+	
+	@ManagedProperty(value = "#{userService}")
+	IUserService userService;
 	
 	
 	/*
@@ -34,6 +43,14 @@ public class LoginManagedBean {
 	
 	public void setAuthenticationManager(AuthenticationManager authenticationManager) {
 		this.authenticationManager = authenticationManager;
+	}
+	
+	public IUserService getUserService() {
+		return this.userService;
+	}
+	
+	public void setUserService(IUserService userService) {
+		this.userService = userService;
 	}
 	
 	public String getUsername() {
@@ -61,21 +78,23 @@ public class LoginManagedBean {
 			final Authentication request = new UsernamePasswordAuthenticationToken(this.getUsername(), this.getPassword());
 			final Authentication result = this.authenticationManager.authenticate(request);
 			SecurityContextHolder.getContext().setAuthentication(result);
+			final MtUser user = this.userService.getUserByUsername(this.username);
+			if (user != null) {
+				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
+			}
+			return LoginManagedBean.LOGIN_SUCCESS;
 		}
 		catch (final AuthenticationException e) {
 			e.printStackTrace();
+			this.displayErrorMessageToUser("Check your email/password");
 			return LoginManagedBean.LOGIN_FAIL;
 		}
-		return LoginManagedBean.LOGIN_SUCCESS;
-	}
-	
-	public String cancel() {
-		return null;
 	}
 	
 	public String logout() {
 		SecurityContextHolder.clearContext();
-		return LOGGEDOUT;
+		//		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+		return LoginManagedBean.LOGGEDOUT;
 	}
 	
 }

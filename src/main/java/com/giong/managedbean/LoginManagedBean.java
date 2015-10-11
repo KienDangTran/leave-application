@@ -93,7 +93,7 @@ public class LoginManagedBean extends AbtractManagedBean {
 	
 	public String logout() {
 		SecurityContextHolder.clearContext();
-		//		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
+		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
 		return LoginManagedBean.LOGGEDOUT;
 	}
 	

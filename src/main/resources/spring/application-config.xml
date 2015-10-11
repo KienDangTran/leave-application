@@ -17,20 +17,61 @@
 	<!-- Package needed to be scanned for annotation -->
 	<context:component-scan base-package="com.giong" />
 
-	<!-- Beans Declaration -->
-	<import resource="classpath:spring/applicationContext-beans.xml" />
-
-	<!-- Service Declaration -->
-	<import resource="classpath:spring/applicationContext-services.xml" />
-
-	<!-- DAO Declaration -->
-	<import resource="classpath:spring/applicationContext-dao.xml" />
-
 	<!-- Data Source Declaration -->
-	<import resource="classpath:spring/applicationContext-datasource.xml" />
+	<bean
+		id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property
+			name="location"
+			value="classpath:jdbc.properties" />
+	</bean>
+
+	<bean
+		id="datasource"
+		class="com.mchange.v2.c3p0.ComboPooledDataSource"
+		destroy-method="close">
+		<property
+			name="driverClass"
+			value="${driverClass}" />
+		<property
+			name="jdbcUrl"
+			value="${jdbcUrl}" />
+		<property
+			name="user"
+			value="${user}" />
+		<property
+			name="password"
+			value="${password}" />
+		<property
+			name="maxPoolSize"
+			value="10" />
+		<property
+			name="minPoolSize"
+			value="5" />
+		<property
+			name="maxStatements"
+			value="0" />
+	</bean>
 
 	<!-- Session Factory & Annotated Classes Declaration -->
-	<import resource="classpath:spring/applicationContext-persistence-unit.xml" />
+	<bean
+		id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property
+			name="dataSource"
+			ref="datasource" />
+		<property name="packagesToScan">
+			<list>
+				<value>com.giong.model</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+			</props>
+		</property>
+	</bean>
 
 	<!-- Enable the configuration of transactional behavior based on annotations -->
 	<tx:annotation-driven transaction-manager="transactionManager" />

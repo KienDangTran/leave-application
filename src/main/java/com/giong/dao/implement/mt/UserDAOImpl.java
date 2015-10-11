@@ -8,7 +8,7 @@ import com.giong.dao.implement.GenericDaoHibernateImpl;
 import com.giong.dao.interfaces.mt.IUserDAO;
 import com.giong.model.mt.MtUser;
 
-@Repository
+@Repository("userDAO")
 public class UserDAOImpl extends GenericDaoHibernateImpl<MtUser, Integer> implements IUserDAO {
 	
 	@SuppressWarnings("unchecked")

@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.giong.constant.MasterDataStatus;
 import com.giong.model.BaseEntity;
 
 
@@ -127,6 +128,10 @@ public class MtUser extends BaseEntity {
 	@Override
 	public Object getId() {
 		return this.getUserId();
+	}
+	
+	public boolean isSuspened() {
+		return MasterDataStatus.SUSPENDED.equalsIgnoreCase(this.getStatus());
 	}
 	
 }

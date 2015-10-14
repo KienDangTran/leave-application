@@ -1,0 +1,37 @@
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:sec="http://www.springframework.org/security/tags">
+
+<h:body>
+	<h:form>
+		<p:dataTable
+			id="tblEmployees"
+			value="#{employeeManagedBean.allEmployees}"
+			rowIndexVar="rowIndex"
+			var="employee"
+			rows="25">
+
+			<p:column headerText="#" width="10px">
+				#{rowIndex + 1}
+			</p:column>
+
+			<!-- Employee Code -->
+			<p:column headerText="#{i18n['employee_code']}">
+				<p:commandLink
+					value="#{employee.employeeCode}"
+					action="#{employeeManagedBean.setCurrentEmployee(employee)}" />
+			</p:column>
+
+			<!-- Employee Name -->
+			<p:column headerText="#{i18n['employee_name']}">
+				<h:outputText value="#{employee.employeeName}" />
+			</p:column>
+
+		</p:dataTable>
+	</h:form>
+</h:body>
+</html>

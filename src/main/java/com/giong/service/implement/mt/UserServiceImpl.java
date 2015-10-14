@@ -68,7 +68,7 @@ public class UserServiceImpl extends GenericServiceImpl<MtUser, Integer> impleme
 		final boolean enabled = true;
 		final boolean accountNonExpired = true;
 		final boolean credentialsNonExpired = true;
-		final boolean accountNonLocked = true;
+		final boolean accountNonLocked = !domainUser.isSuspened();
 		final Collection<? extends GrantedAuthority> authorities = this.getAuthorities(domainUser.getMtUserRoles());
 		final User user = new User(domainUser.getUsername(), domainUser.getPassword(), enabled, accountNonExpired, credentialsNonExpired, accountNonLocked, authorities);
 		return user;

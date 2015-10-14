@@ -1,7 +1,17 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui"
-	template="/faces/unsecure/layout/common_layout.xhtml">
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/faces/layout/common_layout.xhtml">
 	<ui:define name="content">
-		<!-- 				| <h:link title="Employee Mangement" value="Employee Mangement" outcome="/faces/secure/employee/employee_management.xhtml" /> | -->
-		<ui:include src="/faces/secure/employee/employee_management.xhtml" />
+		<h:form>|
+			<h:commandLink
+				title="#{i18n['employee_management']}"
+				value="#{i18n['employee_management']}"
+				action="/faces/maintainance_setup/administrator/employee/employee_management.xhtml" /> |
+			<!-- 		<ui:include src="/faces/secure/employee/employee_management.xhtml" /> -->
+			|
+		</h:form>
 	</ui:define>
 </ui:composition>

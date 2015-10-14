@@ -7,6 +7,7 @@
 						http://www.springframework.org/schema/beans/spring-beans.xsd
 						http://www.springframework.org/schema/security 
 						http://www.springframework.org/schema/security/spring-security.xsd">
+
 	<!-- Enable method level Spring Security by annotations -->
 	<sec:global-method-security pre-post-annotations="enabled" />
 
@@ -16,22 +17,10 @@
 
 	<sec:http auto-config="true">
 
-		<!-- Page level Spring Security : Intercept access to resources in /faces/secure/** -->
 		<sec:intercept-url
-			pattern="/faces/secure/**"
-			access="hasRole('SYS_ADMIN') or hasRole('ADMIN')" />
+			pattern="/faces/**"
+			access="authenticated" />
 
-		<!-- Page level Spring Security : Intercept access to resources in /** -->
-		<sec:intercept-url
-			pattern="/**"
-			access="isAuthenticated()" />
-
-		<!-- Page level Spring Security : Permit access to resources in /faces/unsecure/** -->
-		<sec:intercept-url
-			pattern="/faces/unsecure/**"
-			access="permitAll" />
-
-		<!-- Page level Spring Security : Enable Primefaces -->
 		<sec:intercept-url
 			pattern="/javax.faces.resource/**"
 			access="permitAll" />
@@ -43,8 +32,6 @@
 		<!-- Define login page for Spring Security -->
 		<sec:form-login
 			login-page="/login.xhtml"
-			login-processing-url="/static/j_spring_security_check"
-			authentication-failure-url="/login.xhtml?login_error=t"
 			default-target-url="/faces/home.xhtml"
 			always-use-default-target="true" />
 
@@ -53,6 +40,12 @@
 			invalidate-session="true"
 			delete-cookies="true"
 			logout-success-url="/" />
+
+		<!-- Disable CSRF (won't work with JSF) -->
+		<sec:csrf disabled="true" />
+
+		<!-- ensure last HTTP POST request is saved -->
+		<!-- <sec:request-cache ref="org.springframework.security.web.savedrequest.HttpSessionRequestCache" /> -->
 
 	</sec:http>
 

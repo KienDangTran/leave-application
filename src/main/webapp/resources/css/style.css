@@ -1,7 +1,3 @@
-#topMessage {
-	vertical-align: middle;
-}
-
 html {
 	overflow: hidden;
 }
@@ -12,21 +8,6 @@ body {
 	margin: 0;
 	width: 100%;
 	height: 100%;
-}
-
-h1 {
-	color: black;
-}
-
-a:link,a:visited,a:hover,a:active {
-	color: black;	
-}
-
-.menuButton{
-	font-weight: bold;
-	font-size: 23px;
-	top:10px;
-	bottom: 10px;
 }
 
 #divTop {
@@ -40,7 +21,7 @@ a:link,a:visited,a:hover,a:active {
 	height: 80px;
 	overflow: hidden;
 	background: #dddddd;
-	border: 1px solid darkGray;	
+	border: 1px solid darkGray;
 }
 
 #divLeft {
@@ -52,10 +33,10 @@ a:link,a:visited,a:hover,a:active {
 	left: 10px;
 	bottom: 20px;
 	overflow: auto;
-	width: 250px;
+	width: 280px;
 	border: thin solid lightGray;
 	background: #eeeeee;
-	font-size: 35px;
+	text-align: left;
 }
 
 #divMain {
@@ -64,7 +45,7 @@ a:link,a:visited,a:hover,a:active {
 	margin: 0;
 	position: absolute;
 	top: 100px;
-	left: 280px;
+	left: 310px;
 	right: 20px;
 	bottom: 20px;
 	overflow: auto;
@@ -72,6 +53,6 @@ a:link,a:visited,a:hover,a:active {
 	background: #fefeef;
 }
 
-#label{
+label {
 	font-weight: bold;
 }

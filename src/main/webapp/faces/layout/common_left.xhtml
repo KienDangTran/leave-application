@@ -1,0 +1,34 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	<p:panel
+		header="#{i18n['user_detail']}"
+		toggleable="true"
+		rendered="#{not empty userManagedBean.currentUser}">
+		<h:outputLabel value="#{i18n['user_id']}: " />
+		<h:outputText value="#{userManagedBean.currentUser.userId}" />
+		<br />
+		<h:outputLabel value="#{i18n['username']}: " />
+		<h:outputText value="#{userManagedBean.currentUser.username}" />
+		<br />
+		<h:outputLabel value="#{i18n['user_roles']}: " />
+		<h:outputText value="#{userManagedBean.currentUserRoles}" />
+		<br />
+		<h:outputLabel value="#{i18n['employee_code']}: " />
+		<h:outputText value="#{userManagedBean.currentEmployee.employeeCode}" />
+		<br />
+		<h:outputLabel value="#{i18n['employee_name']}: " />
+		<h:outputText value="#{userManagedBean.currentEmployee.employeeName}" />
+		<br />
+		<div>
+			<h:commandButton
+				id="btnLogout"
+				value="#{i18n['logout']}"
+				action="#{loginManagedBean.logout}" />
+		</div>
+	</p:panel>
+</ui:composition>

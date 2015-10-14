@@ -1,18 +1,20 @@
 package com.giong.managedbean;
 
+import java.io.IOException;
+
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
-import javax.faces.context.FacesContext;
 
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.authentication.LockedException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 
-import com.giong.model.mt.MtUser;
 import com.giong.service.interfaces.mt.IUserService;
+import com.giong.util.JSFMessageUtil;
 
 @ManagedBean(name = "loginManagedBean")
 @RequestScoped
@@ -73,27 +75,27 @@ public class LoginManagedBean extends AbtractManagedBean {
 	/*
 	 ***************************************	ACTIONS		***************************************	
 	 */
-	public String login() {
+	public String login() throws IOException {
 		try {
 			final Authentication request = new UsernamePasswordAuthenticationToken(this.getUsername(), this.getPassword());
 			final Authentication result = this.authenticationManager.authenticate(request);
 			SecurityContextHolder.getContext().setAuthentication(result);
-			final MtUser user = this.userService.getUserByUsername(this.username);
-			if (user != null) {
-				FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("user", user);
-			}
 			return LoginManagedBean.LOGIN_SUCCESS;
+		}
+		catch (final LockedException e) {
+			e.printStackTrace();
+			JSFMessageUtil.sendErrorMessageToUser(JSFMessageUtil.getResource("error.user_acc_has_been_suspended", this.getUsername()), "");
+			return LoginManagedBean.LOGIN_FAIL;
 		}
 		catch (final AuthenticationException e) {
 			e.printStackTrace();
-			this.displayErrorMessageToUser("Check your email/password");
+			JSFMessageUtil.sendErrorMessageToUser(JSFMessageUtil.getResource("error.user_pass_is_invalid"), "");
 			return LoginManagedBean.LOGIN_FAIL;
 		}
 	}
 	
 	public String logout() {
 		SecurityContextHolder.clearContext();
-		FacesContext.getCurrentInstance().getExternalContext().getSessionMap().clear();
 		return LoginManagedBean.LOGGEDOUT;
 	}
 	

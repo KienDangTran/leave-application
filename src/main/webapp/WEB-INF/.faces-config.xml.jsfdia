@@ -13,8 +13,6 @@
     TITLE="#{loginManagedBean.logout}:loggedout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#faces#error.xhtml" PATH="/faces/error.xhtml"
-  SHAPE="256,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
   SHAPE="32,273,0,0" model-entity="JSFProcessGroup">
   <PROCESS-ITEM ID="rules:#login.xhtml:0" NAME="item"
@@ -29,4 +27,6 @@
     TITLE="#{loginManagedBean.login}:fail" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#faces#error.xhtml" PATH="/faces/error.xhtml"
+  SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

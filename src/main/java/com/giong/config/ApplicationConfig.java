@@ -39,7 +39,7 @@ public class ApplicationConfig {
 	@Bean(name = "sessionFactory")
 	public SessionFactory sessionFactory() throws PropertyVetoException {
 		final LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(this.dataSource());
-		builder.scanPackages("com.mkyong.users.model").addProperties(this.getHibernateProperties());
+		builder.scanPackages("com.giong").addProperties(this.getHibernateProperties());
 		
 		return builder.buildSessionFactory();
 	}

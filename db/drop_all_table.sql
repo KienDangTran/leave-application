@@ -13,6 +13,9 @@ drop table if exists `MT_USER_ROLE`;
 
 drop table if exists `MT_ROLE`;
 
+alter table `MT_PERSISTENT_LOGIN` drop foreign key `FK_PERSISTENT_LOGIN_USER`;
+drop table if exists `MT_PERSISTENT_LOGIN`;
+
 alter table `MT_USER` drop foreign key `FK_ROLE_EMPLOYEE`;
 drop table if exists `MT_USER`;
 

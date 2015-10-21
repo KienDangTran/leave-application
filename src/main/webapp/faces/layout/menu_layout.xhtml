@@ -1,0 +1,74 @@
+<ui:composition
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<h:form id="frmMenu">
+		<p:menubar>
+			<p:submenu
+				label="#{i18n['maintainance_setup']}"
+				icon="ui-icon-wrench">
+				<p:submenu
+					label="#{i18n['system_administrator']}"
+					icon="ui-icon-person">
+					<p:menuitem
+						value="#{i18n['user_management']}"
+						icon="ui-icon-suitcase"
+						url="#" />
+				</p:submenu>
+				<p:submenu
+					label="#{i18n['administrator']}"
+					icon="ui-icon-person">
+					<p:menuitem
+						value="#{i18n['employee_management']}"
+						url="#"
+						icon="ui-icon-suitcase" />
+					<p:menuitem
+						value="#{i18n['approving_officer']}"
+						url="#"
+						icon="ui-icon-suitcase" />
+				</p:submenu>
+			</p:submenu>
+
+			<p:submenu
+				label="#{i18n['processing']}"
+				icon="ui-icon-gear">
+				<p:menuitem
+					value="#{i18n['leave_entitlement']}"
+					icon="ui-icon-script" />
+				<p:menuitem
+					value="#{i18n['leave_application']}"
+					icon="ui-icon-calendar" />
+			</p:submenu>
+
+			<p:submenu
+				label="#{i18n['approval']}"
+				icon="ui-icon-circle-check">
+				<p:menuitem
+					value="#{i18n['approval_summary']}"
+					icon="ui-icon-check" />
+			</p:submenu>
+
+			<p:submenu
+				label="Help"
+				icon="ui-icon-help">
+				<p:menuitem
+					value="Contents"
+					url="#" />
+			</p:submenu>
+
+			<f:facet name="options">
+				<h:outputText value="#{i18n['welcome']} " />
+				<p:commandLink value="#{userManagedBean.currentEmployee.employeeName}! " />
+				<p:commandButton
+					id="btnLogout"
+					value="#{i18n['logout']}"
+					actionListener="#{loginManagedBean.logout()}"
+					icon="ui-icon-extlink"
+					ajax="false" />
+			</f:facet>
+		</p:menubar>
+	</h:form>
+</ui:composition>

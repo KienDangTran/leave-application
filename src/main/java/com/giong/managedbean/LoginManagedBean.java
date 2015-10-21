@@ -28,6 +28,7 @@ public class LoginManagedBean extends AbtractManagedBean {
 	
 	private String username = null;
 	private String password = null;
+	private String rememberMe = null;
 	
 	@ManagedProperty(value = "#{authenticationManager}")
 	AuthenticationManager authenticationManager = null;
@@ -71,6 +72,13 @@ public class LoginManagedBean extends AbtractManagedBean {
 		this.password = password;
 	}
 	
+	public String getRememberMe() {
+		return this.rememberMe;
+	}
+	
+	public void setRememberMe(String rememberMe) {
+		this.rememberMe = rememberMe;
+	}
 	
 	/*
 	 ***************************************	ACTIONS		***************************************	
@@ -95,6 +103,7 @@ public class LoginManagedBean extends AbtractManagedBean {
 	}
 	
 	public String logout() {
+		JSFMessageUtil.sendInfoMessageToUser("Logout successfully.", "");
 		SecurityContextHolder.clearContext();
 		return LoginManagedBean.LOGGEDOUT;
 	}

@@ -1,0 +1,46 @@
+<html
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+
+	<title>#{i18n['info.welcome_to_leave_application']}</title>
+
+	<h:outputScript
+		library="primefaces"
+		name="primefaces.js" />
+
+	<h:outputStylesheet
+		library="primefaces"
+		name="primefaces.css" />
+
+	<h:outputStylesheet
+		library="css"
+		name="style.css" />
+
+	<f:facet name="first">
+		<meta
+			content="text/html; charset=UTF-8"
+			http-equiv="Content-Type" />
+	</f:facet>
+</h:head>
+
+<h:body>
+	<f:view
+		contentType="text/html; charset=UTF-8"
+		encoding="UTF-8">
+		<div id="contentWrapper">
+			<ui:insert name="content" />
+		</div>
+		<div id="menu">
+			<ui:insert name="menu">
+				<ui:include src="/faces/layout/menu_layout.xhtml" />
+			</ui:insert>
+		</div>
+	</f:view>
+</h:body>
+
+</html>

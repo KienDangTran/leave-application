@@ -10,12 +10,11 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
 
-import com.giong.constant.Role;
 import com.giong.dao.interfaces.IGenericDAO;
 import com.giong.dao.interfaces.mt.IUserDAO;
 import com.giong.model.mt.MtUser;
@@ -25,7 +24,7 @@ import com.giong.service.interfaces.mt.IUserService;
 
 @Service("userService")
 @Transactional(readOnly = true)
-public class UserServiceImpl extends GenericServiceImpl<MtUser, Integer> implements IUserService, UserDetailsService {
+public class UserServiceImpl extends GenericServiceImpl<MtUser, Integer> implements IUserService {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -85,7 +84,7 @@ public class UserServiceImpl extends GenericServiceImpl<MtUser, Integer> impleme
 		String roleCode;
 		for (final MtUserRole userRole : rolesOfUser) {
 			roleCode = userRole.getId().getRoleCode();
-			if (Role.SYS_ADMIN.equalsIgnoreCase(roleCode) && !roles.contains(roleCode)) {
+			if (!StringUtils.isEmpty(roleCode) && !roles.contains(roleCode)) {
 				roles.add(roleCode);
 			}
 		}

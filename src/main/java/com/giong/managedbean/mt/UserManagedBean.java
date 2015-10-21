@@ -2,6 +2,7 @@ package com.giong.managedbean.mt;
 
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
@@ -27,6 +28,15 @@ public class UserManagedBean extends AbtractManagedBean {
 	private MtUser currentUser;
 	private MtEmployee currentEmployee;
 	
+	
+	@PostConstruct
+	public void init() {
+		final User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		if (user != null) {
+			this.currentUser = this.userService.getUserByUsername(user.getUsername());
+		}
+	}
+	
 	public IUserService getUserService() {
 		return this.userService;
 	}
@@ -36,11 +46,6 @@ public class UserManagedBean extends AbtractManagedBean {
 	}
 	
 	public MtUser getCurrentUser() {
-		final User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-		if (user != null) {
-			this.currentUser = this.userService.getUserByUsername(user.getUsername());
-		}
-		
 		return this.currentUser;
 	}
 	
@@ -57,6 +62,10 @@ public class UserManagedBean extends AbtractManagedBean {
 			sb.append(simpleGrantedAuthority.getAuthority());
 		}
 		return sb.toString();
+	}
+	
+	public void editUser() {
+	
 	}
 	
 }

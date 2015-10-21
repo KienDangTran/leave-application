@@ -43,15 +43,25 @@
 		<param-value>dot-luv</param-value>
 	</context-param>
 
+	<!-- <context-param> -->
+	<!-- <description>Spring Context Configuration' s Path definition</description> -->
+	<!-- <param-name>contextConfigLocation</param-name> -->
+	<!-- <param-value> -->
+	<!-- classpath*:spring/application-config.xml -->
+	<!-- classpath*:spring/applicationContext-security.xml -->
+	<!-- </param-value> -->
+	<!-- </context-param> -->
+
 	<context-param>
-		<description>Spring Context Configuration' s Path definition</description>
-		<param-name>contextConfigLocation</param-name>
-		<param-value>
-			classpath*:spring/application-config.xml
-			classpath*:spring/applicationContext-security.xml
-		</param-value>
+		<description>Configure ContextLoaderListener to use AnnotationConfigWebApplicationContext instead of the default XmlWebApplicationContext</description>
+		<param-name>contextClass</param-name>
+		<param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>
 	</context-param>
 
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>com.giong.config.ApplicationConfig</param-value>
+	</context-param>
 
 	<!-- Spring -->
 	<listener>
@@ -97,5 +107,9 @@
 		<url-pattern>*.faces</url-pattern>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+
+	<welcome-file-list>
+		<welcome-file>faces/home.xhtml</welcome-file>
+	</welcome-file-list>
 
 </web-app>

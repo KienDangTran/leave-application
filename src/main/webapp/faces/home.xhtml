@@ -3,15 +3,17 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	template="/faces/layout/common_layout.xhtml">
+	template="/faces/layout/master_layout.xhtml">
 	<ui:define name="content">
-		<h:form>|
-			<h:commandLink
-				title="#{i18n['employee_management']}"
-				value="#{i18n['employee_management']}"
-				action="/faces/maintainance_setup/administrator/employee/employee_management.xhtml" /> |
-			<!-- 		<ui:include src="/faces/secure/employee/employee_management.xhtml" /> -->
-			|
-		</h:form>
+		<div id="divTop">
+			<ui:include src="/faces/layout/header_layout.xhtml" />
+		</div>
+		<div class="mainContentContainer">
+			<div
+				id="dashboardPanel"
+				class="mainContent">
+				<h2>#{i18n['dashboard']}</h2>
+			</div>
+		</div>
 	</ui:define>
 </ui:composition>

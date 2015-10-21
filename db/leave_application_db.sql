@@ -80,3 +80,16 @@ create table if not exists `MT_USER_ROLE` (
         on delete cascade on update restrict
         
 );
+
+create table if not exists `MT_PERSISTENT_LOGIN` (
+	`USER_ID` varchar(50) not null,
+	`SERIES` varchar(64) not null,
+    `TOKEN` varchar(64) not null,
+    `LAST_USED` timestamp not null,
+    
+    primary key (`SERIES`),
+    
+    constraint `FK_PERSISTENT_LOGIN_USER` foreign key (`USER_ID`)
+        references `leave_application_db`.`MT_USER` (`USER_ID`)
+        on delete cascade on update restrict
+);

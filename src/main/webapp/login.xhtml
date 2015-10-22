@@ -27,12 +27,12 @@
 					<div class="ui-grid-row value">
 						<div class="ui-grid-col-3 label">
 							<p:outputLabel
-								for="username"
+								for="j_username"
 								value="#{i18n['username']}" />
 						</div>
 						<div class="ui-grid-col-6 value">
 							<p:inputText
-								id="username"
+								id="j_username"
 								required="true"
 								requiredMessage="#{i18n['error.please_enter_username']}"
 								value="#{loginBean.username}"
@@ -43,12 +43,12 @@
 					<div class="ui-grid-row value">
 						<div class="ui-grid-col-3 label">
 							<p:outputLabel
-								for="password"
+								for="j_password"
 								value="#{i18n['password']} " />
 						</div>
 						<div class="ui-grid-col-6 value">
 							<p:password
-								id="password"
+								id="j_password"
 								required="true"
 								requiredMessage="#{i18n['error.please_enter_password']}"
 								value="#{loginBean.password}"
@@ -61,7 +61,7 @@
 							class="ui-grid-col-4"
 							align="right">
 							<p:selectBooleanCheckbox
-								id="remember-me"
+								id="_spring_security_remember_me"
 								value="#{loginBean.rememberMe}"
 								label="#{i18n['remember_me']}" />
 						</div>
@@ -69,7 +69,7 @@
 							class="ui-grid-col-5"
 							align="left">
 							<p:outputLabel
-								for="remember-me"
+								for="_spring_security_remember_me"
 								value=" #{i18n['remember_me']}"/>
 						</div>
 					</div>

@@ -7,10 +7,9 @@
    <PROCESS-ITEM-OUTPUT ID="error::#faces#error.xhtml" NAME="output"
     PATH="/faces/error.xhtml" TARGET="rules:#faces#error.xhtml"
     TITLE="error" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="loggedout:#{loginManagedBean.logout}:#login.xhtml"
+   <PROCESS-ITEM-OUTPUT ID="loggedout:#{loginBean.logout}:#login.xhtml"
     NAME="output1" PATH="/login.xhtml" TARGET="rules:#login.xhtml"
-    TITLE="#{loginManagedBean.logout}:loggedout" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{loginBean.logout}:loggedout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#faces#error.xhtml" PATH="/faces/error.xhtml"

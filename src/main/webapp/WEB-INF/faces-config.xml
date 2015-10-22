@@ -32,7 +32,7 @@
 		</navigation-case>
 		<!-- navigation case for method logout() -->
 		<navigation-case>
-			<from-action>#{loginManagedBean.logout}</from-action>
+			<from-action>#{loginBean.logout}</from-action>
 			<from-outcome>loggedout</from-outcome>
 			<to-view-id>/login.xhtml</to-view-id>
 			<redirect></redirect>

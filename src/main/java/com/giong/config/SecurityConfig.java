@@ -43,7 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		super.configure(http);
 		http
 			.authorizeRequests().antMatchers("/faces/**").authenticated()
-								.antMatchers("/login.xhtml", "/javax.faces.resource/**", "/resources/**").permitAll().anyRequest().anonymous()
+								.antMatchers("/login.xhtml", "/javax.faces.resource/**", "/resources/**").anonymous().anyRequest().permitAll()
 			.and()
 				.formLogin().successHandler(this.savedRequestAwareAuthenticationSuccessHandler()).loginProcessingUrl("/j_spring_security_check").loginPage("/login.xhtml").defaultSuccessUrl("/faces/home.xhtml", true).permitAll()
 			.and()

@@ -24,7 +24,7 @@
 				life="8000" />
 			<h:form id="frmLogin">
 				<div class="ui-grid ui-grid-responsive">
-					<div class="ui-grid-row">
+					<div class="ui-grid-row value">
 						<div class="ui-grid-col-3 label">
 							<p:outputLabel
 								for="username"
@@ -35,12 +35,12 @@
 								id="username"
 								required="true"
 								requiredMessage="#{i18n['error.please_enter_username']}"
-								value="#{loginManagedBean.username}"
+								value="#{loginBean.username}"
 								label="#{i18n['username']}" />
 						</div>
 					</div>
 
-					<div class="ui-grid-row">
+					<div class="ui-grid-row value">
 						<div class="ui-grid-col-3 label">
 							<p:outputLabel
 								for="password"
@@ -51,21 +51,34 @@
 								id="password"
 								required="true"
 								requiredMessage="#{i18n['error.please_enter_password']}"
-								value="#{loginManagedBean.password}"
+								value="#{loginBean.password}"
 								label="#{i18n['password']}" />
+						</div>
+					</div>
+
+					<div class="ui-grid-row value">
+						<div
+							class="ui-grid-col-4"
+							align="right">
+							<p:selectBooleanCheckbox
+								id="remember-me"
+								value="#{loginBean.rememberMe}"
+								label="#{i18n['remember_me']}" />
+						</div>
+						<div
+							class="ui-grid-col-5"
+							align="left">
+							<p:outputLabel
+								for="remember-me"
+								value=" #{i18n['remember_me']}"/>
 						</div>
 					</div>
 				</div>
 
-				<p:selectBooleanCheckbox
-					id="remember-me"
-					value="#{loginManagedBean.rememberMe}"
-					label="#{i18n['remember_me']}" />
-
 				<p:commandButton
 					id="btnLogin"
 					value="#{i18n['login']}"
-					action="#{loginManagedBean.login}"
+					action="#{loginBean.login}"
 					icon="ui-icon-home"
 					ajax="false" />
 			</h:form>

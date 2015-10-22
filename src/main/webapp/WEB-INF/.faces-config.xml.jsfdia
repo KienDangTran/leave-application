@@ -8,28 +8,13 @@
     PATH="/faces/error.xhtml" TARGET="rules:#faces#error.xhtml"
     TITLE="error" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="loggedout:#{loginManagedBean.logout}:#faces#login.xhtml"
-    NAME="output1" PATH="/faces/login.xhtml"
-    TARGET="rules:#faces#login.xhtml"
+    ID="loggedout:#{loginManagedBean.logout}:#login.xhtml"
+    NAME="output1" PATH="/login.xhtml" TARGET="rules:#login.xhtml"
     TITLE="#{loginManagedBean.logout}:loggedout" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#faces#error.xhtml" PATH="/faces/error.xhtml"
   SHAPE="272,33,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#faces#login.xhtml" PATH="/faces/login.xhtml"
-  SHAPE="48,161,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:#faces#login.xhtml:0" NAME="item"
-   PATH="/faces/login.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="success:#{loginManagedBean.login}:#faces#home.xhtml"
-    NAME="output" PATH="/faces/home.xhtml"
-    TARGET="rules:#faces#home.xhtml"
-    TITLE="#{loginManagedBean.login}:success" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="fail:#{loginManagedBean.login}:#faces#login.xhtml"
-    NAME="output1" PATH="/faces/login.xhtml"
-    TARGET="rules:#faces#login.xhtml"
-    TITLE="#{loginManagedBean.login}:fail" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#login.xhtml" PATH="/login.xhtml"
+  SHAPE="48,161,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

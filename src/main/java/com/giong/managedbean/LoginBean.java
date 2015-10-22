@@ -16,15 +16,14 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import com.giong.service.interfaces.mt.IUserService;
 import com.giong.util.JSFMessageUtil;
 
-@ManagedBean(name = "loginManagedBean")
+@ManagedBean(name = "loginBean")
 @RequestScoped
-public class LoginManagedBean extends AbtractManagedBean {
+public class LoginBean extends AbtractManagedBean {
 	
 	private static final long serialVersionUID = 1L;
 	
-	public static final String LOGIN_SUCCESS = "success";
-	public static final String LOGIN_FAIL = "fail";
-	public static final String LOGGEDOUT = "loggedout";
+	public static final String HOME_URL = "/faces/home.xhtml";
+	public static final String LOGIN_URL = "/login.xhtml";
 	
 	private String username = null;
 	private String password = null;
@@ -88,24 +87,24 @@ public class LoginManagedBean extends AbtractManagedBean {
 			final Authentication request = new UsernamePasswordAuthenticationToken(this.getUsername(), this.getPassword());
 			final Authentication result = this.authenticationManager.authenticate(request);
 			SecurityContextHolder.getContext().setAuthentication(result);
-			return LoginManagedBean.LOGIN_SUCCESS;
+			return LoginBean.HOME_URL;
 		}
 		catch (final LockedException e) {
 			e.printStackTrace();
 			JSFMessageUtil.sendErrorMessageToUser(JSFMessageUtil.getResource("error.user_acc_has_been_suspended", this.getUsername()), "");
-			return LoginManagedBean.LOGIN_FAIL;
+			return LoginBean.LOGIN_URL;
 		}
 		catch (final AuthenticationException e) {
 			e.printStackTrace();
 			JSFMessageUtil.sendErrorMessageToUser(JSFMessageUtil.getResource("error.user_pass_is_invalid"), "");
-			return LoginManagedBean.LOGIN_FAIL;
+			return LoginBean.LOGIN_URL;
 		}
 	}
 	
 	public String logout() {
 		JSFMessageUtil.sendInfoMessageToUser("Logout successfully.", "");
 		SecurityContextHolder.clearContext();
-		return LoginManagedBean.LOGGEDOUT;
+		return LoginBean.LOGIN_URL;
 	}
 	
 }

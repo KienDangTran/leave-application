@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.User;
 import com.giong.managedbean.AbtractManagedBean;
 import com.giong.model.mt.MtEmployee;
 import com.giong.model.mt.MtUser;
-import com.giong.service.interfaces.mt.IUserService;
+import com.giong.service.interfaces.mt.IUserDetailsService;
 
 @ManagedBean(name = "userManagedBean")
 @SessionScoped
@@ -22,28 +22,36 @@ public class UserManagedBean extends AbtractManagedBean {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@ManagedProperty(value = "#{userService}")
-	IUserService userService;
+	@ManagedProperty(value = "#{userDetailsService}")
+	IUserDetailsService userDetailsService;
 	
 	private MtUser currentUser;
 	private MtEmployee currentEmployee;
 	
 	
+	/*
+	 ***************************************	ACTIONS		***************************************	
+	 */
 	@PostConstruct
 	public void init() {
 		final User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		if (user != null) {
-			this.currentUser = this.userService.getUserByUsername(user.getUsername());
+			this.currentUser = this.userDetailsService.getUserByUsername(user.getUsername());
 		}
 	}
 	
-	public IUserService getUserService() {
-		return this.userService;
+	
+	/*
+	 ***************************************	GETTER & SETTER	***************************************	
+	 */
+	public IUserDetailsService getUserDetailsService() {
+		return this.userDetailsService;
 	}
 	
-	public void setUserService(IUserService userService) {
-		this.userService = userService;
+	public void setUserDetailsService(IUserDetailsService userDetailsService) {
+		this.userDetailsService = userDetailsService;
 	}
+	
 	
 	public MtUser getCurrentUser() {
 		return this.currentUser;
@@ -63,9 +71,4 @@ public class UserManagedBean extends AbtractManagedBean {
 		}
 		return sb.toString();
 	}
-	
-	public void editUser() {
-	
-	}
-	
 }

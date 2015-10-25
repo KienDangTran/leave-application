@@ -5,7 +5,7 @@
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:f="http://java.sun.com/jsf/core">
 
-	<h:form id="frmMenu">
+	<h:form id="frmMenuBar">
 		<p:menubar>
 			<p:submenu
 				label="#{i18n['maintainance_setup']}"
@@ -60,14 +60,21 @@
 			</p:submenu>
 
 			<f:facet name="options">
-				<h:outputText value="#{i18n['welcome']} " />
-				<p:commandLink value="#{userManagedBean.currentEmployee.employeeName}! " />
-				<p:commandButton
-					id="btnLogout"
+				<h:outputText
+					value=" #{i18n['welcome']}, "
+					escape="false" />
+				<b><p:commandLink value=" #{userManagedBean.currentEmployee.employeeName}" /></b>
+				<h:outputText
+					value="  "
+					escape="false" />
+
+				<p:button
+					href="/j_spring_security_logout?faces-redirect=true"
 					value="#{i18n['logout']}"
-					actionListener="#{loginBean.logout()}"
-					icon="ui-icon-extlink"
-					ajax="false" />
+					title="#{i18n['logout']}"
+					icon="ui-icon-extlink">
+				</p:button>
+
 			</f:facet>
 		</p:menubar>
 	</h:form>

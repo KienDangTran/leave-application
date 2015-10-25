@@ -3,27 +3,27 @@ use leave_application_db;
 /*-------------------------------------------------------------------- CREATE TABLE --------------------------------------------------------------*/
 
 create table if not exists `MT_ROLE` (
-    `ROLE_CODE` varchar(50) not null,
+    `ROLE_CODE` varchar(64) not null,
     `ROLE_DESC` text,
-    `STATUS` char(3),
+    `STATUS` char(1),
     
     primary key (`ROLE_CODE`)
     
 )  engine=innodb;
 
 create table if not exists `MT_PERMISSION` (
-	`PERMISSION_CODE` varchar(50),
+	`PERMISSION_CODE` varchar(64),
     `PERMISSION_DESC` text,
-    `STATUS` char(3),
+    `STATUS` char(1),
     
     primary key (`PERMISSION_CODE`)
     
 ) engine = innodb;
 
 create table if not exists `MT_ROLE_PERMISSION_GRANTED` (
-    `ROLE_CODE` varchar(50) not null,
-    `PERMISSION_CODE` varchar(50)  not null,
-    `STATUS` char(3),
+    `ROLE_CODE` varchar(64) not null,
+    `PERMISSION_CODE` varchar(64)  not null,
+    `STATUS` char(1),
     
     primary key (`ROLE_CODE`, `PERMISSION_CODE`),
     
@@ -38,22 +38,22 @@ create table if not exists `MT_ROLE_PERMISSION_GRANTED` (
 ) engine = innodb;
 
 create table if not exists `MT_EMPLOYEE` (
-    `EMPLOYEE_CODE` varchar(50) not null,
-    `EMPLOYEE_NAME` varchar(50) not null,
+    `EMPLOYEE_CODE` varchar(64) not null,
+    `EMPLOYEE_NAME` varchar(64) not null,
     `DATE_OF_BIRTH` date default null,
-    `EMAIL` varchar(50) default null,
-    `PHONE_NO` varchar(20) default null,
-    `STATUS` char(3),
+    `EMAIL` varchar(64) default null,
+    `PHONE_NO` varchar(64) default null,
+    `STATUS` char(1),
     
     primary key (`EMPLOYEE_CODE`)
     
 )  engine=innodb;
 
 create table if not exists `MT_USER` (
-	`USER_ID` varchar(50) not null,
-	`USERNAME` varchar(50) not null,
+	`USER_ID` varchar(64) not null,
+	`USERNAME` varchar(64) not null,
 	`PASSWORD` varchar(256) not null,
-    `EMPLOYEE_CODE` varchar(50) not null,
+    `EMPLOYEE_CODE` varchar(64) not null,
     `STATUS` char(3),
 	
 	primary key (`USER_ID`),
@@ -65,8 +65,8 @@ create table if not exists `MT_USER` (
 ) engine = innodb;
 
 create table if not exists `MT_USER_ROLE` (
-	`USER_ID` varchar(50) not null,
-	`ROLE_CODE` varchar(50) not null,
+	`USER_ID` varchar(64) not null,
+	`ROLE_CODE` varchar(64) not null,
     `STATUS` char(3),
     
     primary key (`USER_ID`, `ROLE_CODE`),
@@ -81,15 +81,11 @@ create table if not exists `MT_USER_ROLE` (
         
 );
 
-create table if not exists `MT_PERSISTENT_LOGIN` (
-	`USER_ID` varchar(50) not null,
+create table if not exists `PERSISTENT_LOGINS` (
+	`USERNAME` varchar(64) not null,
 	`SERIES` varchar(64) not null,
     `TOKEN` varchar(64) not null,
     `LAST_USED` timestamp not null,
     
-    primary key (`SERIES`),
-    
-    constraint `FK_PERSISTENT_LOGIN_USER` foreign key (`USER_ID`)
-        references `leave_application_db`.`MT_USER` (`USER_ID`)
-        on delete cascade on update restrict
+    primary key (`SERIES`)
 );

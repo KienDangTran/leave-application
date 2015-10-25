@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate4.HibernateTransactionManager;
 import org.springframework.orm.hibernate4.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import com.giong.config.security.SecurityConfig;
 import com.mchange.v2.c3p0.ComboPooledDataSource;
 
 @Configuration

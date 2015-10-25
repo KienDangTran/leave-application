@@ -20,11 +20,11 @@ import com.giong.dao.interfaces.mt.IUserDAO;
 import com.giong.model.mt.MtUser;
 import com.giong.model.mt.MtUserRole;
 import com.giong.service.implement.GenericServiceImpl;
-import com.giong.service.interfaces.mt.IUserService;
+import com.giong.service.interfaces.mt.IUserDetailsService;
 
-@Service("userService")
+@Service("userDetailsService")
 @Transactional(readOnly = true)
-public class UserServiceImpl extends GenericServiceImpl<MtUser, Integer> implements IUserService {
+public class UserDetailsServiceImpl extends GenericServiceImpl<MtUser, Integer> implements IUserDetailsService {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -47,12 +47,12 @@ public class UserServiceImpl extends GenericServiceImpl<MtUser, Integer> impleme
 	 ***************************************	CONTRUCTORS	  ***************************************	
 	 */
 	
-	public UserServiceImpl() {
+	public UserDetailsServiceImpl() {
 	}
 	
 	
 	@Autowired
-	public UserServiceImpl(@Qualifier("userDAO") IGenericDAO<MtUser, Integer> genericDAO) {
+	public UserDetailsServiceImpl(@Qualifier("userDAO") IGenericDAO<MtUser, Integer> genericDAO) {
 		super(genericDAO);
 		this.userDAO = (IUserDAO) genericDAO;
 	}
@@ -74,7 +74,7 @@ public class UserServiceImpl extends GenericServiceImpl<MtUser, Integer> impleme
 	}
 	
 	private Collection<? extends GrantedAuthority> getAuthorities(List<MtUserRole> rolesOfUser) {
-		final List<GrantedAuthority> authorities = UserServiceImpl.getGrantedAuthorities(this.getRoles(rolesOfUser));
+		final List<GrantedAuthority> authorities = UserDetailsServiceImpl.getGrantedAuthorities(this.getRoles(rolesOfUser));
 		return authorities;
 	}
 	

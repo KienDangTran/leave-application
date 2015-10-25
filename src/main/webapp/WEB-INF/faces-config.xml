@@ -25,18 +25,28 @@
 
 
 	<navigation-rule>
-		<from-view-id>/faces/home.xhtml</from-view-id>
 		<navigation-case>
 			<from-outcome>error</from-outcome>
 			<to-view-id>/faces/error.xhtml</to-view-id>
 		</navigation-case>
-		<!-- navigation case for method logout() -->
-		<navigation-case>
-			<from-action>#{loginBean.logout}</from-action>
-			<from-outcome>loggedout</from-outcome>
-			<to-view-id>/login.xhtml</to-view-id>
-			<redirect></redirect>
-		</navigation-case>
 	</navigation-rule>
 
+
+	<navigation-rule>
+		<display-name>welcome.xhtml</display-name>
+		<from-view-id>welcome.xhtml</from-view-id>
+
+		<navigation-case>
+			<from-action>#{loginBean.doLogin()}</from-action>
+			<from-outcome>loginSuccess</from-outcome>
+			<to-view-id>/faces/home.xhtml</to-view-id>
+		</navigation-case>
+
+		<navigation-case>
+			<from-action>#{loginBean.doLogin()}</from-action>
+			<from-outcome>loginFailure</from-outcome>
+			<to-view-id>welcome.xhtml</to-view-id>
+		</navigation-case>
+
+	</navigation-rule>
 </faces-config>

@@ -96,6 +96,7 @@
 	<servlet>
 		<description>JSF Servlet is defined to container</description>
 		<servlet-name>Faces Servlet</servlet-name>
+		<display-name>Faces Servlet</display-name>
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
@@ -107,5 +108,9 @@
 		<url-pattern>*.faces</url-pattern>
 		<url-pattern>*.xhtml</url-pattern>
 	</servlet-mapping>
+	
+	<welcome-file-list>
+		<welcome-file>welcome.xhtml</welcome-file>
+	</welcome-file-list>
 
 </web-app>

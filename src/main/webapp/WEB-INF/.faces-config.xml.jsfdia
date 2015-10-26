@@ -9,21 +9,4 @@
     TITLE="error" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
- <PROCESS-ITEM NAME="rules:#faces#home.xhtml" PATH="/faces/home.xhtml"
-  SHAPE="464,385,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:welcome.xhtml" PATH="welcome.xhtml"
-  SHAPE="240,369,0,0" model-entity="JSFProcessGroup">
-  <PROCESS-ITEM ID="rules:welcome.xhtml:0" NAME="item"
-   PATH="welcome.xhtml" model-entity="JSFProcessItem">
-   <PROCESS-ITEM-OUTPUT
-    ID="loginSuccess:#{loginBean.doLogin()}:#faces#home.xhtml"
-    NAME="output" PATH="/faces/home.xhtml"
-    TARGET="rules:#faces#home.xhtml"
-    TITLE="#{loginBean.doLogin()}:loginSuccess" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="loginFailure:#{loginBean.doLogin()}:welcome.xhtml"
-    NAME="output1" PATH="welcome.xhtml" TARGET="rules:welcome.xhtml"
-    TITLE="#{loginBean.doLogin()}:loginFailure" model-entity="JSFProcessItemOutput"/>
-  </PROCESS-ITEM>
- </PROCESS-ITEM>
 </PROCESS>

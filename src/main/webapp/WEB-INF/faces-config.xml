@@ -32,21 +32,21 @@
 	</navigation-rule>
 
 
-	<navigation-rule>
-		<display-name>welcome.xhtml</display-name>
-		<from-view-id>welcome.xhtml</from-view-id>
+<!-- 	<navigation-rule> -->
+<!-- 		<display-name>welcome.xhtml</display-name> -->
+<!-- 		<from-view-id>welcome.xhtml</from-view-id> -->
 
-		<navigation-case>
-			<from-action>#{loginBean.doLogin()}</from-action>
-			<from-outcome>loginSuccess</from-outcome>
-			<to-view-id>/faces/home.xhtml</to-view-id>
-		</navigation-case>
+<!-- 		<navigation-case> -->
+<!-- 			<from-action>#{loginBean.doLogin()}</from-action> -->
+<!-- 			<from-outcome>loginSuccess</from-outcome> -->
+<!-- 			<to-view-id>/faces/home.xhtml</to-view-id> -->
+<!-- 		</navigation-case> -->
 
-		<navigation-case>
-			<from-action>#{loginBean.doLogin()}</from-action>
-			<from-outcome>loginFailure</from-outcome>
-			<to-view-id>welcome.xhtml</to-view-id>
-		</navigation-case>
+<!-- 		<navigation-case> -->
+<!-- 			<from-action>#{loginBean.doLogin()}</from-action> -->
+<!-- 			<from-outcome>loginFailure</from-outcome> -->
+<!-- 			<to-view-id>welcome.xhtml</to-view-id> -->
+<!-- 		</navigation-case> -->
 
-	</navigation-rule>
+<!-- 	</navigation-rule> -->
 </faces-config>

@@ -15,11 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.RememberMeServices;
-import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.rememberme.AbstractRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
-import org.springframework.security.web.authentication.rememberme.RememberMeAuthenticationFilter;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
 import com.giong.service.interfaces.mt.IUserDetailsService;
 
@@ -28,21 +26,24 @@ import com.giong.service.interfaces.mt.IUserDetailsService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
+	public static final String APPLICATION_SECURITY_KEY = "application-security.key";
+	
 	private final int TOKEN_VALIDITY_SECONDS = 86400;
-	private final String APPLICATION_KEY = "application.key";
 	
 	@Autowired
-	DataSource dataSource;
+	private DataSource dataSource;
 	
 	@Autowired
-	IUserDetailsService userDetailsService;
-	
-	@Autowired
-	AuthenticationManager authenticationManager;
+	private IUserDetailsService userDetailsService;
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(this.rememberMeAuthenticationProvider()).userDetailsService(this.userDetailsService).passwordEncoder(this.passwordEncoder());
+		// @formatter:off
+		auth
+//			.authenticationProvider(this.rememberMeAuthenticationProvider())
+			.userDetailsService(this.userDetailsService)
+			.passwordEncoder(this.passwordEncoder());
+		// @formatter:on
 	}
 	
 	@Override
@@ -53,9 +54,37 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		super.configure(http);
-		http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/faces/**").authenticated().and().formLogin().loginPage("/welcome.xhtml").loginProcessingUrl("/j_spring_security_check")
-				.successHandler(this.savedRequestAwareAuthenticationSuccessHandler()).permitAll().and().logout().logoutUrl("/j_spring_security_logout").logoutSuccessUrl("/")
-				.invalidateHttpSession(true).deleteCookies("JSESSIONID").and().rememberMe().rememberMeServices(this.rememberMeServices()).and().csrf().disable();
+		
+		// @formatter:off
+		http
+			.csrf().disable().httpBasic()
+			.and()
+				.headers().cacheControl().and()
+			.and()
+				.sessionManagement()
+				.sessionFixation().none()
+			.and()
+				.authorizeRequests().antMatchers("/").permitAll()
+									.antMatchers("/faces/**").authenticated()
+			.and()
+				.formLogin().permitAll()
+//							.loginPage("/welcRome.xhtml")
+//							.loginProcessingUrl("/login")
+				
+			.and()
+				.logout().logoutUrl("/logout")
+						 .invalidateHttpSession(true)
+						 .deleteCookies("JSESSIONID", AbstractRememberMeServices.SPRING_SECURITY_REMEMBER_ME_COOKIE_KEY)
+						 .logoutSuccessUrl("/")
+			.and()
+				.rememberMe().tokenRepository(this.tokenRepository());
+//							 .key(SecurityConfig.APPLICATION_SECURITY_KEY)
+//							 .userDetailsService(this.userDetailsService)
+//							 .rememberMeServices(this.rememberMeServices())
+//			.and()
+//				.addFilter(this.rememberMeFilter())
+		;		
+		// @formatter:on
 	}
 	
 	@Override
@@ -66,43 +95,39 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Bean(name = "passwordEncoder")
 	public PasswordEncoder passwordEncoder() {
-		final PasswordEncoder encoder = new BCryptPasswordEncoder();
-		return encoder;
+		final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+		return passwordEncoder;
 	}
 	
-	@Bean(name = "savedRequestAwareAuthenticationSuccessHandler")
-	public SavedRequestAwareAuthenticationSuccessHandler savedRequestAwareAuthenticationSuccessHandler() {
-		final SavedRequestAwareAuthenticationSuccessHandler auth = new SavedRequestAwareAuthenticationSuccessHandler();
-		auth.setTargetUrlParameter("targetUrl");
-		return auth;
+	@Bean(name = "tokenRepository")
+	public PersistentTokenRepository tokenRepository() {
+		final JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
+		db.setDataSource(this.dataSource);
+		return db;
 	}
 	
-	/*
-	 * -------------------------------------------------------------	Remember-Me stuff	------------------------------------------------------
-	 */
-	@Bean(name = "rememberMeFilter")
-	public RememberMeAuthenticationFilter rememberMeFilter() {
-		final RememberMeAuthenticationFilter rememberMeFilter = new RememberMeAuthenticationFilter(this.authenticationManager, this.rememberMeServices());
-		return rememberMeFilter;
-	}
+	//	@Bean(name = "rememberMeFilter")
+	//	public RememberMeAuthenticationFilter rememberMeFilter() throws Exception {
+	//		final RememberMeAuthenticationFilter rememberMeFilter = new RememberMeAuthenticationFilter(this.authenticationManager(), this.rememberMeServices());
+	//		return rememberMeFilter;
+	//	}
 	
-	@Bean(name = "rememberMeServices")
-	public RememberMeServices rememberMeServices() {
-		
-		final JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
-		jdbcTokenRepository.setDataSource(this.dataSource);
-		
-		final PersistentTokenBasedRememberMeServices persistentTokenBasedRememberMeServices = new PersistentTokenBasedRememberMeServices(this.APPLICATION_KEY, this.userDetailsService,
-				jdbcTokenRepository);
-		persistentTokenBasedRememberMeServices.setAlwaysRemember(true);
-		persistentTokenBasedRememberMeServices.setTokenValiditySeconds(this.TOKEN_VALIDITY_SECONDS);
-		
-		return persistentTokenBasedRememberMeServices;
-	}
-	
+	//	@Bean(name = "rememberMeServices")
+	//	public RememberMeServices rememberMeServices() {
+	//		
+	//		final JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+	//		jdbcTokenRepository.setDataSource(this.dataSource);
+	//		
+	//		final PersistentTokenBasedRememberMeServices rememberMeServices = new PersistentTokenBasedRememberMeServices(SecurityConfig.APPLICATION_SECURITY_KEY, this.userDetailsService,
+	//				jdbcTokenRepository);
+	//		rememberMeServices.setTokenValiditySeconds(this.TOKEN_VALIDITY_SECONDS);
+	//		
+	//		return rememberMeServices;
+	//	}
+	//	
 	@Bean(name = "rememberMeAuthenticationProvider")
 	public RememberMeAuthenticationProvider rememberMeAuthenticationProvider() {
-		final RememberMeAuthenticationProvider rememberMeAuthenticationProvider = new RememberMeAuthenticationProvider(this.APPLICATION_KEY);
+		final RememberMeAuthenticationProvider rememberMeAuthenticationProvider = new RememberMeAuthenticationProvider(SecurityConfig.APPLICATION_SECURITY_KEY);
 		return rememberMeAuthenticationProvider;
 	}
 	

@@ -31,7 +31,6 @@ public class ApplicationConfig {
 	private final String USER = "user";
 	private final String PASSWORD = "password";
 	private final String HIBERNATE_DIALECT = "hibernate.dialect";
-	private final String HIBERNATE_FORMAT_SQL = "hibernate.format_sql";
 	private final String HIBERNATE_SHOW_SQL = "hibernate.show_sql";
 	
 	@Resource
@@ -71,7 +70,6 @@ public class ApplicationConfig {
 		final Properties prop = new Properties();
 		prop.put(this.HIBERNATE_DIALECT, this.env.getProperty(this.HIBERNATE_DIALECT));
 		prop.put(this.HIBERNATE_SHOW_SQL, this.env.getProperty(this.HIBERNATE_SHOW_SQL));
-		prop.put(this.HIBERNATE_FORMAT_SQL, this.env.getProperty(this.HIBERNATE_FORMAT_SQL));
 		return prop;
 	}
 }

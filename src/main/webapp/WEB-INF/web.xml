@@ -110,7 +110,7 @@
 	</servlet-mapping>
 	
 	<welcome-file-list>
-		<welcome-file>welcome.xhtml</welcome-file>
+		<welcome-file>home.xhtml</welcome-file>
 	</welcome-file-list>
 
 </web-app>

@@ -21,6 +21,7 @@ import com.giong.model.mt.MtUser;
 import com.giong.model.mt.MtUserRole;
 import com.giong.service.implement.GenericServiceImpl;
 import com.giong.service.interfaces.mt.IUserDetailsService;
+import com.giong.util.JSFMessageUtil;
 
 @Service("userDetailsService")
 @Transactional(readOnly = true)
@@ -64,6 +65,7 @@ public class UserDetailsServiceImpl extends GenericServiceImpl<MtUser, Integer> 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		final MtUser domainUser = this.userDAO.loadUserByUsername(username);
+		if (domainUser == null) throw new UsernameNotFoundException(JSFMessageUtil.getResource("Username/Password is invalid"));
 		final boolean enabled = true;
 		final boolean accountNonExpired = true;
 		final boolean credentialsNonExpired = true;

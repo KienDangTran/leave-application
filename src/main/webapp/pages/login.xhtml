@@ -22,7 +22,9 @@
 			<p:growl
 				showDetail="true"
 				life="8000" />
-			<h:form id="frmLogin" prependId="false">
+			<h:form
+				id="frmLogin"
+				prependId="false">
 				<div class="ui-grid ui-grid-responsive">
 					<div class="ui-grid-row value">
 						<div class="ui-grid-col-3 label">
@@ -35,7 +37,6 @@
 								id="username"
 								required="true"
 								requiredMessage="#{i18n['error.please_enter_username']}"
-								value="#{loginBean.username}"
 								label="#{i18n['username']}" />
 						</div>
 					</div>
@@ -51,7 +52,6 @@
 								id="password"
 								required="true"
 								requiredMessage="#{i18n['error.please_enter_password']}"
-								value="#{loginBean.password}"
 								label="#{i18n['password']}" />
 						</div>
 					</div>
@@ -60,11 +60,9 @@
 						<div
 							class="ui-grid-col-4"
 							align="right">
-							<p:selectBooleanCheckbox
+							<h:selectBooleanCheckbox
 								id="remember-me"
-								value="#{loginBean.rememberMe}"
 								label="#{i18n['remember_me']}" />
-							<h:outputText value="  " />
 						</div>
 						<div
 							class="ui-grid-col-5"

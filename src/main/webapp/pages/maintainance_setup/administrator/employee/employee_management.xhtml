@@ -12,14 +12,14 @@
 			id="summaryPanel"
 			header="#{i18n['employee_summary']}"
 			rendered="#{empty employeeManagedBean.currentEmployee}">
-			<ui:include src="/faces/maintainance_setup/administrator/employee/employee_summary.xhtml" />
+			<ui:include src="/pages/maintainance_setup/administrator/employee/employee_summary.xhtml" />
 		</p:panel>
 
 		<p:panel
 			id="detailPanel"
 			header="#{i18n['employee_details']}"
 			rendered="#{not empty employeeManagedBean.currentEmployee}">
-			<ui:include src="/faces/maintainance_setup/administrator/employee/employee_details.xhtml" />
+			<ui:include src="/pages/maintainance_setup/administrator/employee/employee_details.xhtml" />
 		</p:panel>
 	</p:panel>
 </ui:composition>

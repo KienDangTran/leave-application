@@ -12,28 +12,26 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.AbstractRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 
-import com.giong.service.interfaces.mt.IUserDetailsService;
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
-	public static final String APPLICATION_SECURITY_KEY = "application-security.key";
 	
-	private final int TOKEN_VALIDITY_SECONDS = 30;
+	private final int TOKEN_VALIDITY_SECONDS = 60 * 60 * 24;
 	
 	@Autowired
 	private DataSource dataSource;
 	
 	@Autowired
-	private IUserDetailsService userDetailsService;
+	private UserDetailsService userDetailsService;
 	
 	@Autowired
 	public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
@@ -58,13 +56,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement()
 				.sessionFixation().none()
 			.and()
-				.authorizeRequests().antMatchers("/**").authenticated()
+				.authorizeRequests().anyRequest().authenticated()
 			.and()
-				.formLogin().permitAll()
-							.loginPage("/pages/login.xhtml")
+				.formLogin().loginPage("/pages/login.xhtml").permitAll()
 			.and()
-				.logout().logoutUrl("/logout")
-						 .invalidateHttpSession(true)
+				.logout().invalidateHttpSession(true)
 						 .deleteCookies("JSESSIONID", AbstractRememberMeServices.SPRING_SECURITY_REMEMBER_ME_COOKIE_KEY)
 						 .logoutSuccessUrl("/")
 			.and()

@@ -9,10 +9,12 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.giong.dao.interfaces.IGenericDAO;
 
 @Repository
+@Transactional
 public abstract class GenericDaoHibernateImpl<T, K extends Serializable> implements IGenericDAO<T, K> {
 	
 	private final Class<? extends T> entityClass;

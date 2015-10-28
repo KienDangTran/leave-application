@@ -10,6 +10,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,12 +21,10 @@ import com.giong.dao.interfaces.mt.IUserDAO;
 import com.giong.model.mt.MtUser;
 import com.giong.model.mt.MtUserRole;
 import com.giong.service.implement.GenericServiceImpl;
-import com.giong.service.interfaces.mt.IUserDetailsService;
-import com.giong.util.JSFMessageUtil;
 
 @Service("userDetailsService")
 @Transactional(readOnly = true)
-public class UserDetailsServiceImpl extends GenericServiceImpl<MtUser, Integer> implements IUserDetailsService {
+public class UserDetailsServiceImpl extends GenericServiceImpl<MtUser, Integer> implements UserDetailsService {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -65,7 +64,7 @@ public class UserDetailsServiceImpl extends GenericServiceImpl<MtUser, Integer> 
 	@Override
 	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		final MtUser domainUser = this.userDAO.loadUserByUsername(username);
-		if (domainUser == null) throw new UsernameNotFoundException(JSFMessageUtil.getResource("Username/Password is invalid"));
+		if (domainUser == null) throw new UsernameNotFoundException("Username Is Not Found");
 		final boolean enabled = true;
 		final boolean accountNonExpired = true;
 		final boolean credentialsNonExpired = true;
@@ -99,11 +98,6 @@ public class UserDetailsServiceImpl extends GenericServiceImpl<MtUser, Integer> 
 			authorities.add(new SimpleGrantedAuthority(role));
 		}
 		return authorities;
-	}
-	
-	@Override
-	public MtUser getUserByUsername(String username) {
-		return this.userDAO.loadUserByUsername(username);
 	}
 	
 }

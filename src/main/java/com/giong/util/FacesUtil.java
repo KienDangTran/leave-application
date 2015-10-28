@@ -10,7 +10,7 @@ import javax.faces.context.FacesContext;
 
 import org.springframework.util.StringUtils;
 
-public class JSFMessageUtil {
+public class FacesUtil {
 	
 	
 	private static final String RESOURCE_BUNDLE_BASE_NAME = "i18n.i18n";
@@ -38,7 +38,7 @@ public class JSFMessageUtil {
 	public static String getResource(String key, Object... params) {
 		if (StringUtils.isEmpty(key)) return "";
 		final Locale locale = FacesContext.getCurrentInstance().getViewRoot().getLocale();
-		final ResourceBundle bundle = ResourceBundle.getBundle(JSFMessageUtil.RESOURCE_BUNDLE_BASE_NAME, locale);
+		final ResourceBundle bundle = ResourceBundle.getBundle(FacesUtil.RESOURCE_BUNDLE_BASE_NAME, locale);
 		String value;
 		try {
 			value = bundle.getString(key);

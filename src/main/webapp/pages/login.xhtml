@@ -62,7 +62,8 @@
 							align="right">
 							<h:selectBooleanCheckbox
 								id="remember-me"
-								label="#{i18n['remember_me']}" />
+								label="#{i18n['remember_me']}"
+								style="width: 20px;height: 20px;" />
 						</div>
 						<div
 							class="ui-grid-col-5"
@@ -73,12 +74,11 @@
 						</div>
 					</div>
 				</div>
-
 				<p:commandButton
 					id="btnLogin"
 					value="#{i18n['login']}"
-					action="#{loginBean.doLogin()}"
-					icon="ui-icon-home"
+					action="#{loginManagedBean.doLogin()}"
+					icon="ui-icon-person"
 					ajax="false" />
 
 			</h:form>

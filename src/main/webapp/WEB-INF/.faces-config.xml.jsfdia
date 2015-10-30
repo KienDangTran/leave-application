@@ -9,4 +9,24 @@
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#error.xhtml" PATH="/pages/error.xhtml"
   SHAPE="240,257,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#login.xhtml?error"
+  PATH="/pages/login.xhtml?error" SHAPE="32,353,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#index.xhtml" PATH="/pages/index.xhtml"
+  SHAPE="240,369,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#pages#login.xhtml" PATH="/pages/login.xhtml"
+  SHAPE="32,465,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#pages#login.xhtml:0" NAME="item"
+   PATH="/pages/login.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="success:#{loginManagedBean.doLogin()}:#pages#index.xhtml"
+    NAME="output" PATH="/pages/index.xhtml"
+    TARGET="rules:#pages#index.xhtml"
+    TITLE="#{loginManagedBean.doLogin()}:success" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="failure:#{loginManagedBean.doLogin()}:#pages#login.xhtml?error"
+    NAME="output1" PATH="/pages/login.xhtml?error"
+    TARGET="rules:#pages#login.xhtml?error"
+    TITLE="#{loginManagedBean.doLogin()}:failure" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
 </PROCESS>

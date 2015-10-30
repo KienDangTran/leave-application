@@ -3,29 +3,36 @@ html {
 }
 
 body {
-	background: white url(#{resource['./images/bodyback.png']}) left top;
+	background: white url(#{ resource [ './images/bodyback.png' ]
 }
 
+)
+left
+ 
+top
+;
+
+
+}
 label {
 	font-weight: bold;
 }
 
 h1 {
-    margin-bottom: 0.2em;
-    font-size: 4em;
-    line-height: 1.4;
-    font-weight: 800;
+	margin-bottom: 0.2em;
+	font-size: 4em;
+	line-height: 1.4;
+	font-weight: 800;
 }
 
 h2 {
-    color: #222;
-    margin-bottom: .5em;
-    margin-top: .5em;
-    font-size: 2.75em;
-    line-height: 1.2;
-    font-weight: 400;
+	color: #222;
+	margin-bottom: .5em;
+	margin-top: .5em;
+	font-size: 2.75em;
+	line-height: 1.2;
+	font-weight: 400;
 }
-
 
 #contentWrapper {
 	top: 0px;
@@ -48,15 +55,15 @@ h2 {
 }
 
 #divTitle {
-    clear: both;
-    width: 80%;
-    font-size: 0.8125em;
-    max-width: 760px;
-    margin: 0 auto;
-    padding: 120px 0px 30px 0px;
-    position: relative;
-    color: #000;
-    text-align: center;
+	clear: both;
+	width: 80%;
+	font-size: 0.8125em;
+	max-width: 760px;
+	margin: 0 auto;
+	padding: 120px 0px 30px 0px;
+	position: relative;
+	color: #000;
+	text-align: center;
 }
 
 #divTop {
@@ -67,23 +74,24 @@ h2 {
 	background: url(#{resource['./images/headerback.png']}) no-repeat center;
 }
 
+
 .mainContentContainer {
-    vertical-align: baseline;
-    background: transparent;
-    background: rgba(255, 255, 255, 0.33);
-    border-bottom: 1px #fff solid;
+	vertical-align: baseline;
+	background: transparent;
+	background: rgba(255, 255, 255, 0.33);
+	border-bottom: 1px #fff solid;
 }
 
 .mainContent {
 	clear: both;
-    width: 80%;
-    font-size: 0.8125em;
-    max-width: 92.3em;
-    margin: 0 auto;
-    padding: 1em 0px;
-    color: #333;
-    line-height: 1.5em;
-    position: relative;
+	width: 80%;
+	font-size: 0.8125em;
+	max-width: 92.3em;
+	margin: 0 auto;
+	padding: 1em 0px;
+	color: #333;
+	line-height: 1.5em;
+	position: relative;
 }
 
 .label {

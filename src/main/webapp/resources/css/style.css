@@ -3,11 +3,6 @@ html {
 }
 
 body {
-	margin: 0 auto;
-	padding: 0;
-	font: 100%/1.4 'Open Sans', 'lucida sans unicode', 'lucida grande', 'Trebuchet MS', verdana, arial, helvetica, helve, sans-serif;
-	color: #000;
-	text-align: center;
 	background: white url(#{resource['./images/bodyback.png']}) left top;
 }
 
@@ -16,8 +11,6 @@ label {
 }
 
 h1 {
-    font-family: 'Oswald', LeagueGothicRegular, 'Open Sans', 'lucida sans unicode', 'lucida grande', 'Trebuchet MS', verdana, arial, helvetica, helve, sans-serif;
-    color: #000;
     margin-bottom: 0.2em;
     font-size: 4em;
     line-height: 1.4;
@@ -35,20 +28,18 @@ h2 {
 
 
 #contentWrapper {
-	position: absolute;
 	top: 0px;
 	left: 0px;
 	right: 0px;
 	bottom: 20px;
 	overflow: auto;
 	text-align: left;
+	position: absolute;
 	background: transparent;
 }
 
 #menu {
-	padding-left: 0px;
 	margin: 0px;
-	position: absolute;
 	top: 0px;
 	left: 0px;
 	right: 0px;
@@ -108,4 +99,8 @@ h2 {
 
 .required {
 	color: red;
+}
+
+.block {
+	display: inline-block
 }

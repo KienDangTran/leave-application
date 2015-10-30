@@ -13,26 +13,25 @@
 		library="css"
 		name="style.css" />
 </h:head>
-<h:body>
+<h:body onload="document.frmLogin.username.focus();">
 	<div align="center">
 		<h1>#{i18n['info.welcome_to_leave_application']}</h1>
 		<p:panel
 			header="#{i18n['login']}"
-			style="width: 480px">
-			<p:growl
-				showDetail="true"
-				life="8000" />
+			styleClass="block">
+
 			<h:form
 				id="frmLogin"
 				prependId="false">
+
 				<div class="ui-grid ui-grid-responsive">
 					<div class="ui-grid-row value">
-						<div class="ui-grid-col-3 label">
+						<div class="ui-grid-col-9 label">
 							<p:outputLabel
 								for="username"
 								value="#{i18n['username']}" />
 						</div>
-						<div class="ui-grid-col-6 value">
+						<div class="ui-grid-col-9 value">
 							<p:inputText
 								id="username"
 								required="true"
@@ -42,12 +41,12 @@
 					</div>
 
 					<div class="ui-grid-row value">
-						<div class="ui-grid-col-3 label">
+						<div class="ui-grid-col-9 label">
 							<p:outputLabel
 								for="password"
 								value="#{i18n['password']} " />
 						</div>
-						<div class="ui-grid-col-6 value">
+						<div class="ui-grid-col-9 value">
 							<p:password
 								id="password"
 								required="true"
@@ -66,7 +65,7 @@
 								style="width: 20px;height: 20px;" />
 						</div>
 						<div
-							class="ui-grid-col-5"
+							class="ui-grid-col-7"
 							align="left">
 							<p:outputLabel
 								for="remember-me"
@@ -74,13 +73,17 @@
 						</div>
 					</div>
 				</div>
+
 				<p:commandButton
 					id="btnLogin"
-					value="#{i18n['login']}"
 					action="#{loginManagedBean.doLogin()}"
+					value="#{i18n['login']}"
 					icon="ui-icon-person"
-					ajax="false" />
-
+					ajax="false"
+					update="frmLogin" />
+				<br />
+				<br />
+				<p:messages autoUpdate="true" />
 			</h:form>
 		</p:panel>
 	</div>

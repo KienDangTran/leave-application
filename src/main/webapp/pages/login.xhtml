@@ -16,6 +16,18 @@
 <h:body onload="document.frmLogin.username.focus();">
 	<div align="center">
 		<h1>#{i18n['info.welcome_to_leave_application']}</h1>
+
+		<p:messages
+			id="errMsg"
+			autoUpdate="true"
+			closable="true"
+			styleClass="block" />
+		<br />
+
+		<p:growl
+			autoUpdate="true"
+			life="10000" />
+
 		<p:panel
 			header="#{i18n['login']}"
 			styleClass="block">
@@ -23,10 +35,6 @@
 			<h:form
 				id="frmLogin"
 				prependId="false">
-
-				<p:growl
-					autoUpdate="true"
-					life="10000" />
 
 				<div class="ui-grid ui-grid-responsive">
 					<div class="ui-grid-row value">
@@ -85,12 +93,11 @@
 					action="#{loginManagedBean.doLogin()}"
 					value="#{i18n['login']}"
 					icon="ui-icon-person"
-					update="frmLogin" />
+					ajax="false"
+					update="err" />
+				<br />
+
 			</h:form>
-			<p:messages
-				autoUpdate="true"
-				closable="true"
-				style="width: 300px;" />
 		</p:panel>
 	</div>
 </h:body>

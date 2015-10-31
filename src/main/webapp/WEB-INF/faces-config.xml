@@ -1,27 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <faces-config
+	version="2.2"
 	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
-	version="2.2">
-
-	<application>
-		<!-- Enable Spring -->
-		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
-
-		<!-- location -->
-		<locale-config>
-			<default-locale>en_US</default-locale>
-		</locale-config>
-
-		<!-- resources bundle -->
-		<resource-bundle>
-			<base-name>i18n.i18n</base-name>
-			<display-name>i18n</display-name>
-			<var>i18n</var>
-		</resource-bundle>
-	</application>
-
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
 
 	<navigation-rule>
 		<navigation-case>
@@ -43,5 +25,19 @@
 			<to-view-id>/pages/login.xhtml?error</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+
+	<application>
+		<!-- Enable Spring -->
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<!--English [US] -->
+		<locale-config>
+			<default-locale>en_US</default-locale>
+		</locale-config>
+		<resource-bundle>
+			<display-name>i18n</display-name>
+			<base-name>i18n.i18n_en_US</base-name>
+			<var>i18n</var>
+		</resource-bundle>
+	</application>
 
 </faces-config>

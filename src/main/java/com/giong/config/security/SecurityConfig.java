@@ -15,9 +15,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.RememberMeServices;
 import org.springframework.security.web.authentication.rememberme.AbstractRememberMeServices;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
-import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.authentication.rememberme.PersistentTokenBasedRememberMeServices;
 
 @Configuration
 @EnableWebSecurity
@@ -26,6 +27,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	
 	private final int TOKEN_VALIDITY_SECONDS = 60 * 60 * 24;
+	private final String APPLICATION_SECURITY_KEY = "application-security.key";
 	
 	@Autowired
 	private DataSource dataSource;
@@ -59,14 +61,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				.authorizeRequests().anyRequest().authenticated()
 			.and()
 				.formLogin().loginPage("/pages/login.xhtml")
-				.loginProcessingUrl("/login")
+							.loginProcessingUrl("/login")
 							.permitAll()
 			.and()
 				.logout().invalidateHttpSession(true)
 						 .deleteCookies("JSESSIONID", AbstractRememberMeServices.SPRING_SECURITY_REMEMBER_ME_COOKIE_KEY)
 						 .logoutSuccessUrl("/")
 			.and()
-				.rememberMe().tokenRepository(this.tokenRepository()).tokenValiditySeconds(this.TOKEN_VALIDITY_SECONDS);
+				.rememberMe().rememberMeServices(this.rememberMeServices())
 		;		
 		// @formatter:on
 	}
@@ -83,11 +85,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		return passwordEncoder;
 	}
 	
-	@Bean(name = "tokenRepository")
-	public PersistentTokenRepository tokenRepository() {
-		final JdbcTokenRepositoryImpl db = new JdbcTokenRepositoryImpl();
-		db.setDataSource(this.dataSource);
-		return db;
+	@Bean(name = "rememberMeServices")
+	public RememberMeServices rememberMeServices() {
+		
+		final JdbcTokenRepositoryImpl jdbcTokenRepository = new JdbcTokenRepositoryImpl();
+		jdbcTokenRepository.setDataSource(this.dataSource);
+		
+		final PersistentTokenBasedRememberMeServices rememberMeServices = new PersistentTokenBasedRememberMeServices(this.APPLICATION_SECURITY_KEY, this.userDetailsService, jdbcTokenRepository);
+		rememberMeServices.setTokenValiditySeconds(this.TOKEN_VALIDITY_SECONDS);
+		rememberMeServices.setAlwaysRemember(false);
+		
+		return rememberMeServices;
 	}
 	
 }
+
+/*                         														   _
+														  _._ _..._ .-',     _.._(`))
+														 '-. `     '  /-._.-'    ',/
+														    )         \            '.
+														   / _    _    |             \
+														  |  a    a    /              |
+														  \   .-.                     ;  
+														   '-('' ).-'       ,'       ;
+														      '-;           |      .'
+														         \           \    /
+														         | 7  .__  _.-\   \
+														         | |  |  ``/  /`  /
+														        /,_|  |   /,_/   /
+														           /,_/      '`-'
+*/

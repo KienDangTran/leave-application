@@ -30,14 +30,21 @@ public class MtUser extends BaseEntity {
 	@Column(name = "USER_ID")
 	private String userId;
 	
+	//	@Column(name = "EMPLOYEE_CODE")
+	//	private String employeeCode;
+	
 	@Column(name = "PASSWORD")
 	private String password;
 	
 	@Column(name = "STATUS")
 	private String status;
 	
+	@Column(name = "THEME")
+	private String theme;
+	
 	@Column(name = "USERNAME")
 	private String username;
+	
 	
 	//bi-directional one-to-one association to MtEmployee
 	@OneToOne(fetch = FetchType.EAGER)
@@ -67,6 +74,14 @@ public class MtUser extends BaseEntity {
 		this.userId = userId;
 	}
 	
+	//	public String getEmployeeCode() {
+	//		return this.employeeCode;
+	//	}
+	//	
+	//	public void setEmployeeCode(String employeeCode) {
+	//		this.employeeCode = employeeCode;
+	//	}
+	
 	public String getPassword() {
 		return this.password;
 	}
@@ -83,12 +98,20 @@ public class MtUser extends BaseEntity {
 		this.status = status;
 	}
 	
+	public void setUsername(String username) {
+		this.username = username;
+	}
+	
+	public String getTheme() {
+		return this.theme;
+	}
+	
 	public String getUsername() {
 		return this.username;
 	}
 	
-	public void setUsername(String username) {
-		this.username = username;
+	public void setTheme(String theme) {
+		this.theme = theme;
 	}
 	
 	public MtEmployee getMtEmployee() {
@@ -97,6 +120,7 @@ public class MtUser extends BaseEntity {
 	
 	public void setMtEmployee(MtEmployee mtEmployee) {
 		this.mtEmployee = mtEmployee;
+		//		this.employeeCode = mtEmployee == null ? null : mtEmployee.getEmployeeCode();
 	}
 	
 	public List<MtUserRole> getMtUserRoles() {

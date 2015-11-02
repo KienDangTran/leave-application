@@ -54,6 +54,7 @@ create table if not exists `MT_USER` (
 	`USERNAME` varchar(64) not null,
 	`PASSWORD` varchar(256) not null,
     `EMPLOYEE_CODE` varchar(64) not null,
+    `THEME` varchar(32),
     `STATUS` char(3),
 	
 	primary key (`USER_ID`),

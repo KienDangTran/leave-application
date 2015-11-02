@@ -33,7 +33,8 @@
 		<servlet.version>3.0.1</servlet.version>
 		<jstl.version>1.2</jstl.version>
 		<jsf.version>2.2.12</jsf.version>
-		<primefaces.version>5.0</primefaces.version>
+		<primefaces.version>5.3</primefaces.version>
+		<theme.version>1.0.10</theme.version>
 
 		<!-- SPRING -->
 		<spring-framework.version>4.2.1.RELEASE</spring-framework.version>
@@ -173,8 +174,9 @@
 		<!-- PRIMEFACES THEME -->
 		<dependency>
 			<groupId>org.primefaces.themes</groupId>
-			<artifactId>dot-luv</artifactId>
-			<version>1.0.10</version>
+			<artifactId>all-themes</artifactId>
+			<version>${theme.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 
@@ -190,7 +192,6 @@
 			<artifactId>javassist</artifactId>
 			<version>3.12.1.GA</version>
 		</dependency>
-
 
 
 		<!-- MySQL Java Connector dependency -->

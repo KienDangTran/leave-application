@@ -3,19 +3,7 @@ html {
 }
 
 body {
-	background: white url(#{ resource [ './images/bodyback.png' ]
-}
-
-)
-left
- 
-top
-;
-
-
-}
-label {
-	font-weight: bold;
+	background: white url(#{ resource [ './images/bodyback.png' ]}) left top;
 }
 
 h1 {
@@ -103,10 +91,6 @@ h2 {
 .value {
 	background: ghostwhite;
 	padding: 2px;
-}
-
-.required {
-	color: red;
 }
 
 .block {

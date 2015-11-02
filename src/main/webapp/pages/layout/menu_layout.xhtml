@@ -67,6 +67,24 @@
 				<h:outputText
 					value="  "
 					escape="false" />
+				<p:outputLabel
+					value="Theme "
+					for="themeSwitcher"
+					style="margin: 0 0 0 20px" />
+				<p:themeSwitcher
+					id="themeSwitcher"
+					style="margin: 0 20px 0 0; position:relative; bottom:-8px;"
+					value="#{themesManagedBean.currentTheme.name}">
+					<f:selectItems
+						value="#{themesManagedBean.themes}"
+						var="theme"
+						itemLabel="#{theme.displayName}"
+						itemValue="#{theme.name}" />
+					<p:ajax
+						event="change"
+						listener="#{themesManagedBean.changeTheme()}"
+						update="frmMenuBar" />
+				</p:themeSwitcher>
 
 				<p:button
 					href="/logout?faces-redirect=true"
@@ -74,8 +92,8 @@
 					title="#{i18n['logout']}"
 					icon="ui-icon-extlink">
 				</p:button>
-
 			</f:facet>
+
 		</p:menubar>
 	</h:form>
 </ui:composition>

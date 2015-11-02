@@ -41,7 +41,7 @@
 	</context-param>
 	<context-param>
 		<param-name>pimefaces.THEME</param-name>
-		<param-value>dot-luv</param-value>
+		<param-value>#{userManagedBean.currentUser.theme}</param-value>
 	</context-param>
 	<!-- Spring Security -->
 	<filter>

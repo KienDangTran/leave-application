@@ -28,10 +28,6 @@ public class UserManagedBean extends AbtractManagedBean {
 	private MtUser currentUser;
 	private MtEmployee currentEmployee;
 	
-	
-	/*
-	 ***************************************	ACTIONS		***************************************	
-	 */
 	@PostConstruct
 	public void init() {
 		final User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -39,7 +35,6 @@ public class UserManagedBean extends AbtractManagedBean {
 			this.currentUser = this.userDAO.loadUserByUsername(user.getUsername());
 		}
 	}
-	
 	
 	/*
 	 ***************************************	GETTER & SETTER	***************************************	

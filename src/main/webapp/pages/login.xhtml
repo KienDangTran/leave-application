@@ -13,6 +13,7 @@
 		library="css"
 		name="style.css" />
 </h:head>
+
 <h:body onload="document.frmLogin.username.focus();">
 	<div align="center">
 		<h1>#{i18n['info.welcome_to_leave_application']}</h1>
@@ -27,7 +28,6 @@
 		<p:growl
 			autoUpdate="true"
 			life="10000" />
-
 		<p:panel
 			header="#{i18n['login']}"
 			styleClass="block">
@@ -96,7 +96,6 @@
 					ajax="false"
 					update="err" />
 				<br />
-
 			</h:form>
 		</p:panel>
 	</div>

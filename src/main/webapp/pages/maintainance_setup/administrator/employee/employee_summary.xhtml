@@ -10,7 +10,7 @@
 	<h:form>
 		<p:dataTable
 			id="tblEmployees"
-			value="#{employeeManagedBean.allEmployees}"
+			value="#{employeeBean.allEmployees}"
 			rowIndexVar="rowIndex"
 			var="employee"
 			rows="25">
@@ -23,7 +23,7 @@
 			<p:column headerText="#{i18n['employee_code']}">
 				<p:commandLink
 					value="#{employee.employeeCode}"
-					action="#{employeeManagedBean.setCurrentEmployee(employee)}" />
+					action="#{employeeBean.setCurrentEmployee(employee)}" />
 			</p:column>
 
 			<!-- Employee Name -->

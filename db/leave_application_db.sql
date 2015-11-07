@@ -55,7 +55,10 @@ create table if not exists `MT_USER` (
 	`PASSWORD` varchar(256) not null,
     `EMPLOYEE_CODE` varchar(64) not null,
     `THEME` varchar(32),
-    `STATUS` char(3),
+    `ACCOUNT_NON_EXPIRED` bool default true,
+    `ACCOUNT_NON_LOCKED` bool default true,
+    `CREDENTIALS_NON_EXPIRED` bool default true,
+    `ENABLED` bool default true,
 	
 	primary key (`USER_ID`),
     

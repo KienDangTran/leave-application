@@ -20,9 +20,9 @@ import org.springframework.security.web.authentication.RememberMeServices;
 
 import com.giong.util.FacesUtil;
 
-@ManagedBean(name = "loginManagedBean")
+@ManagedBean(name = "loginBean")
 @RequestScoped
-public class LoginManagedBean extends AbtractManagedBean {
+public class LoginBean extends AbtractManagedBean {
 	
 	private static final long serialVersionUID = 1L;
 	

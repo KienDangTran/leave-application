@@ -32,14 +32,21 @@
 	<f:view
 		contentType="text/html; charset=UTF-8"
 		encoding="UTF-8">
+
+		<p:growl
+			autoUpdate="true"
+			life="10000" />
+
 		<div id="contentWrapper">
 			<ui:insert name="content" />
 		</div>
+
 		<div id="menu">
 			<ui:insert name="menu">
-				<ui:include src="/pages/layout/menu_layout.xhtml" />
+				<ui:include src="/pages/layout/menu.xhtml" />
 			</ui:insert>
 		</div>
+		
 	</f:view>
 </h:body>
 

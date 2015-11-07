@@ -41,8 +41,13 @@
 	</context-param>
 	<context-param>
 		<param-name>pimefaces.THEME</param-name>
-		<param-value>#{userManagedBean.currentUser.theme}</param-value>
+		<param-value>#{userSessionBean.currentUser.theme}</param-value>
 	</context-param>
+	<context-param>
+		<param-name>facelets.SKIP_COMMENTS</param-name>
+		<param-value>true</param-value>
+	</context-param>
+	
 	<!-- Spring Security -->
 	<filter>
 		<description>Enable Spring Filter: Spring Security works on the concept of Filters</description>

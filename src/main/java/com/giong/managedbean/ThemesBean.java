@@ -4,47 +4,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 
-import com.giong.managedbean.mt.UserManagedBean;
 import com.giong.model.Theme;
 
-@ManagedBean
-public class ThemesManagedBean {
+@ManagedBean(name = "themesBean")
+@ApplicationScoped
+public class ThemesBean {
 	
-	private Theme currentTheme;
 	private List<Theme> themes;
-	
-	@ManagedProperty("#{userManagedBean}")
-	private UserManagedBean userManagedBean;
 	
 	@PostConstruct
 	public void init() {
 		this.themes = this.getThemes();
-		this.currentTheme = this.getThemeByName(this.userManagedBean.getCurrentUser().getTheme());
-	}
-	
-	public void changeTheme() {
-		if (this.currentTheme != null && !this.currentTheme.getName().equalsIgnoreCase(this.userManagedBean.getCurrentUser().getTheme())) {
-			this.userManagedBean.getCurrentUser().setTheme(this.currentTheme.getName());
-			this.userManagedBean.getUserDAO().update(this.userManagedBean.getCurrentUser());
-		}
-	}
-	
-	private Theme getThemeByName(String themeName) {
-		for (final Theme theme : this.themes) {
-			if (theme.getName().equalsIgnoreCase(themeName)) return theme;
-		}
-		return this.themes.get(0);
-	}
-	
-	public Theme getCurrentTheme() {
-		return this.currentTheme;
-	}
-	
-	public void setCurrentTheme(Theme currentTheme) {
-		this.currentTheme = currentTheme;
 	}
 	
 	public List<Theme> getThemes() {
@@ -89,14 +62,4 @@ public class ThemesManagedBean {
 		this.themes.add(new Theme(37, "Vader", "vader"));
 		return this.themes;
 	}
-	
-	public UserManagedBean getUserManagedBean() {
-		return this.userManagedBean;
-	}
-	
-	public void setUserManagedBean(UserManagedBean userManagedBean) {
-		this.userManagedBean = userManagedBean;
-	}
-	
-	
 }

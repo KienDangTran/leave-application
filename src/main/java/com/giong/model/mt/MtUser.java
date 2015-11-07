@@ -1,5 +1,8 @@
 package com.giong.model.mt;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -12,7 +15,11 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.giong.constant.MasterDataStatus;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.StringUtils;
+
 import com.giong.model.BaseEntity;
 
 
@@ -21,29 +28,35 @@ import com.giong.model.BaseEntity;
  * 
  */
 @Entity
-@Table(name = "mt_user")
+@Table(name = "MT_USER")
 @NamedQuery(name = "MtUser.findAll", query = "SELECT m FROM MtUser m")
-public class MtUser extends BaseEntity {
+public class MtUser extends BaseEntity implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
 	@Column(name = "USER_ID")
 	private String userId;
 	
-	//	@Column(name = "EMPLOYEE_CODE")
-	//	private String employeeCode;
+	@Column(name = "USERNAME")
+	private String username;
 	
 	@Column(name = "PASSWORD")
 	private String password;
 	
-	@Column(name = "STATUS")
-	private String status;
-	
 	@Column(name = "THEME")
 	private String theme;
 	
-	@Column(name = "USERNAME")
-	private String username;
+	@Column(name = "ACCOUNT_NON_EXPIRED")
+	private boolean accountNonExpired = true;
+	
+	@Column(name = "ACCOUNT_NON_LOCKED")
+	private boolean accountNonLocked = true;
+	
+	@Column(name = "CREDENTIALS_NON_EXPIRED")
+	private boolean credentialsNonExpired = true;
+	
+	@Column(name = "ENABLED")
+	private boolean enabled = true;
 	
 	
 	//bi-directional one-to-one association to MtEmployee
@@ -52,8 +65,8 @@ public class MtUser extends BaseEntity {
 	private MtEmployee mtEmployee;
 	
 	//bi-directional many-to-one association to MtUserRole
-	@OneToMany(mappedBy = "mtUser")
-	private List<MtUserRole> mtUserRoles;
+	@OneToMany(mappedBy = "mtUser", fetch = FetchType.EAGER)
+	private List<MtUserRole> mtUserRoles = new ArrayList<MtUserRole>();
 	
 	
 	/*
@@ -74,28 +87,13 @@ public class MtUser extends BaseEntity {
 		this.userId = userId;
 	}
 	
-	//	public String getEmployeeCode() {
-	//		return this.employeeCode;
-	//	}
-	//	
-	//	public void setEmployeeCode(String employeeCode) {
-	//		this.employeeCode = employeeCode;
-	//	}
-	
+	@Override
 	public String getPassword() {
 		return this.password;
 	}
 	
 	public void setPassword(String password) {
 		this.password = password;
-	}
-	
-	public String getStatus() {
-		return this.status;
-	}
-	
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	
 	public void setUsername(String username) {
@@ -106,6 +104,7 @@ public class MtUser extends BaseEntity {
 		return this.theme;
 	}
 	
+	@Override
 	public String getUsername() {
 		return this.username;
 	}
@@ -120,7 +119,6 @@ public class MtUser extends BaseEntity {
 	
 	public void setMtEmployee(MtEmployee mtEmployee) {
 		this.mtEmployee = mtEmployee;
-		//		this.employeeCode = mtEmployee == null ? null : mtEmployee.getEmployeeCode();
 	}
 	
 	public List<MtUserRole> getMtUserRoles() {
@@ -145,17 +143,69 @@ public class MtUser extends BaseEntity {
 		return mtUserRole;
 	}
 	
-	
-	/*
-	 *  OTHER METHODS
-	 */
 	@Override
 	public Object getId() {
 		return this.getUserId();
 	}
 	
-	public boolean isSuspened() {
-		return MasterDataStatus.SUSPENDED.equalsIgnoreCase(this.getStatus());
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		
+		if (this.mtUserRoles.isEmpty()) return Collections.emptyList();
+		
+		final Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		String roleCode;
+		GrantedAuthority authority;
+		for (final MtUserRole userRole : this.mtUserRoles) {
+			roleCode = userRole.getId().getRoleCode();
+			
+			if (StringUtils.isEmpty(roleCode)) {
+				continue;
+			}
+			
+			authority = new SimpleGrantedAuthority(roleCode);
+			if (!authorities.contains(authority)) {
+				authorities.add(authority);
+			}
+		}
+		
+		return authorities;
+	}
+	
+	@Override
+	public boolean isAccountNonExpired() {
+		return this.accountNonExpired;
+	}
+	
+	public void setAccountNonExpired(boolean accountNonExpired) {
+		this.accountNonExpired = accountNonExpired;
+	}
+	
+	@Override
+	public boolean isAccountNonLocked() {
+		return this.accountNonLocked;
+	}
+	
+	public void setAccountNonLocked(boolean accountNonLocked) {
+		this.accountNonLocked = accountNonLocked;
+	}
+	
+	@Override
+	public boolean isCredentialsNonExpired() {
+		return true;
+	}
+	
+	public void setCredentialsNonExpired(boolean credentialsNonExpired) {
+		this.credentialsNonExpired = credentialsNonExpired;
+	}
+	
+	@Override
+	public boolean isEnabled() {
+		return this.enabled;
+	}
+	
+	public void setEnabled(boolean enabled) {
+		this.enabled = enabled;
 	}
 	
 }

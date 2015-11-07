@@ -7,50 +7,57 @@
 
 	<h:form id="frmMenuBar">
 		<p:menubar>
+
+			<!-- Maintainance Setup -->
 			<p:submenu
 				label="#{i18n['maintainance_setup']}"
 				icon="ui-icon-wrench">
+
+				<!-- System Administrator -->
 				<p:submenu
 					label="#{i18n['system_administrator']}"
 					icon="ui-icon-person">
 					<p:menuitem
 						value="#{i18n['user_management']}"
-						icon="ui-icon-suitcase"
 						url="#" />
 				</p:submenu>
+
+				<!-- Administrator -->
 				<p:submenu
 					label="#{i18n['administrator']}"
 					icon="ui-icon-person">
 					<p:menuitem
 						value="#{i18n['employee_management']}"
-						url="#"
-						icon="ui-icon-suitcase" />
+						action="#{navigationBean.setPage('/pages/maintainance_setup/administrator/employee/employee_management.xhtml')}" />
 					<p:menuitem
 						value="#{i18n['approving_officer']}"
-						url="#"
-						icon="ui-icon-suitcase" />
+						url="#" />
 				</p:submenu>
+
 			</p:submenu>
 
+			<!-- Processing -->
 			<p:submenu
 				label="#{i18n['processing']}"
 				icon="ui-icon-gear">
 				<p:menuitem
 					value="#{i18n['leave_entitlement']}"
-					icon="ui-icon-script" />
+					url="#" />
 				<p:menuitem
 					value="#{i18n['leave_application']}"
-					icon="ui-icon-calendar" />
+					url="#" />
 			</p:submenu>
 
+			<!-- Approval -->
 			<p:submenu
 				label="#{i18n['approval']}"
 				icon="ui-icon-circle-check">
 				<p:menuitem
 					value="#{i18n['approval_summary']}"
-					icon="ui-icon-check" />
+					url="#" />
 			</p:submenu>
 
+			<!-- Help -->
 			<p:submenu
 				label="Help"
 				icon="ui-icon-help">
@@ -63,7 +70,7 @@
 				<h:outputText
 					value=" #{i18n['welcome']}, "
 					escape="false" />
-				<b><p:commandLink value=" #{userManagedBean.currentEmployee.employeeName}" /></b>
+				<b><p:commandLink value=" #{userSessionBean.currentEmployee.employeeName}" /></b>
 				<h:outputText
 					value="  "
 					escape="false" />
@@ -74,15 +81,18 @@
 				<p:themeSwitcher
 					id="themeSwitcher"
 					style="margin: 0 20px 0 0; position:relative; bottom:-8px;"
-					value="#{themesManagedBean.currentTheme.name}">
+					value="#{userSessionBean.currentUser.theme}">
+					<f:selectItem
+						itemLabel="Choose Theme"
+						itemValue="" />
 					<f:selectItems
-						value="#{themesManagedBean.themes}"
+						value="#{themesBean.themes}"
 						var="theme"
 						itemLabel="#{theme.displayName}"
 						itemValue="#{theme.name}" />
 					<p:ajax
 						event="change"
-						listener="#{themesManagedBean.changeTheme()}"
+						listener="#{userSessionBean.changeTheme()}"
 						update="frmMenuBar" />
 				</p:themeSwitcher>
 

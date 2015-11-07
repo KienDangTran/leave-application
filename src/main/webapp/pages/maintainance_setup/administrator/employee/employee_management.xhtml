@@ -3,7 +3,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	template="/pages/layout/template.xhtml">
 
 	<p:panel
 		header="#{i18n.employee_management}"
@@ -11,14 +12,14 @@
 		<p:panel
 			id="summaryPanel"
 			header="#{i18n['employee_summary']}"
-			rendered="#{empty employeeManagedBean.currentEmployee}">
+			rendered="#{empty employeeBean.currentEmployee}">
 			<ui:include src="/pages/maintainance_setup/administrator/employee/employee_summary.xhtml" />
 		</p:panel>
 
 		<p:panel
 			id="detailPanel"
 			header="#{i18n['employee_details']}"
-			rendered="#{not empty employeeManagedBean.currentEmployee}">
+			rendered="#{not empty employeeBean.currentEmployee}">
 			<ui:include src="/pages/maintainance_setup/administrator/employee/employee_details.xhtml" />
 		</p:panel>
 	</p:panel>

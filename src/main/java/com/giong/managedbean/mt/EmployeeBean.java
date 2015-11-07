@@ -10,9 +10,9 @@ import com.giong.managedbean.AbtractManagedBean;
 import com.giong.model.mt.MtEmployee;
 import com.giong.service.interfaces.mt.IEmployeeService;
 
-@ManagedBean(name = "employeeManagedBean")
+@ManagedBean(name = "employeeBean")
 @ViewScoped
-public class EmployeeManagedBean extends AbtractManagedBean {
+public class EmployeeBean extends AbtractManagedBean {
 	
 	private static final long serialVersionUID = 1L;
 	

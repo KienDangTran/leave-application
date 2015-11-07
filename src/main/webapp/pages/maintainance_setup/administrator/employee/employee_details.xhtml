@@ -15,10 +15,10 @@
 				<td>
 					<p:inputText
 						id="employeeCode"
-						value="#{employeeManagedBean.currentEmployee.employee_code}"
+						value="#{employeeBean.currentEmployee.employee_code}"
 						label="Employee Code"
 						required="true"
-						disabled="#{not empty employeeManagedBean.currentEmployee.employee_code}">
+						disabled="#{not empty employeeBean.currentEmployee.employee_code}">
 						<p:ajax
 							event="blur"
 							update="employeeCodeMsg" />
@@ -40,7 +40,7 @@
 				<td>
 					<p:inputText
 						id="employeeName"
-						value="#{employeeManagedBean.currentEmployee.employee_name}"
+						value="#{employeeBean.currentEmployee.employee_name}"
 						required="true"
 						label="Employee Name">
 						<p:ajax
@@ -64,7 +64,7 @@
 				<td>
 					<p:calendar
 						id="dob"
-						value="#{employeeManagedBean.currentEmployee.date_of_birth}"
+						value="#{employeeBean.currentEmployee.date_of_birth}"
 						pattern="dd/MM/yyyy"
 						label="Date of Birth">
 						<p:ajax
@@ -88,7 +88,7 @@
 				<td>
 					<p:inputText
 						id="email"
-						value="#{employeeManagedBean.currentEmployee.email}"
+						value="#{employeeBean.currentEmployee.email}"
 						label="Email">
 						<p:ajax
 							event="blur"
@@ -111,7 +111,7 @@
 				<td>
 					<p:inputText
 						id="phone"
-						value="#{employeeManagedBean.currentEmployee.phone_no}"
+						value="#{employeeBean.currentEmployee.phone_no}"
 						label="Phone No.">
 						<p:ajax
 							event="blur"
@@ -130,12 +130,12 @@
 		<p:commandButton
 			id="addUser"
 			value="Add"
-			action="#{employeeManagedBean.addEmployee}"
+			action="#{employeeBean.addEmployee}"
 			ajax="false" />
 		<p:commandButton
 			id="reset"
 			value="Reset"
-			action="#{employeeManagedBean.reset}"
+			action="#{employeeBean.reset}"
 			ajax="false" />
 	</h:form>
 </h:body>

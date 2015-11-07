@@ -16,15 +16,14 @@
   <PROCESS-ITEM ID="rules:#pages#login.xhtml:0" NAME="item"
    PATH="/pages/login.xhtml" model-entity="JSFProcessItem">
    <PROCESS-ITEM-OUTPUT
-    ID="success:#{loginManagedBean.doLogin()}:#pages#index.xhtml"
-    NAME="output" PATH="/pages/index.xhtml"
-    TARGET="rules:#pages#index.xhtml"
-    TITLE="#{loginManagedBean.doLogin()}:success" model-entity="JSFProcessItemOutput"/>
+    ID="success:#{loginBean.doLogin()}:#pages#index.xhtml" NAME="output"
+    PATH="/pages/index.xhtml" TARGET="rules:#pages#index.xhtml"
+    TITLE="#{loginBean.doLogin()}:success" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="failure:#{loginManagedBean.doLogin()}:#pages#login.xhtml?error"
+    ID="failure:#{loginBean.doLogin()}:#pages#login.xhtml?error"
     NAME="output1" PATH="/pages/login.xhtml?error"
     TARGET="rules:#pages#login.xhtml?error"
-    TITLE="#{loginManagedBean.doLogin()}:failure" model-entity="JSFProcessItemOutput"/>
+    TITLE="#{loginBean.doLogin()}:failure" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#pages#login.xhtml?error"

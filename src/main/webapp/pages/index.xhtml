@@ -3,17 +3,20 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
-	template="/pages/layout/master_layout.xhtml">
+	template="/pages/layout/template.xhtml">
 	<ui:define name="content">
+
 		<div id="divTop">
-			<ui:include src="/pages/layout/header_layout.xhtml" />
-		</div>
-		<div class="mainContentContainer">
-			<div
-				id="dashboardPanel"
-				class="mainContent">
-				<h2>#{i18n['dashboard']}</h2>
+			<div id="divTitle">
+				<h1>Welcome To Leave Application</h1>
 			</div>
+		</div>
+		<div
+			class="mainContentContainer"
+			id="mainPanel">
+
+			<ui:include src="#{navigationBean.page}" />
+
 		</div>
 	</ui:define>
 </ui:composition>

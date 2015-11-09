@@ -3,24 +3,57 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-	template="/pages/layout/template.xhtml">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
 
-	<p:panel
-		header="#{i18n.employee_management}"
-		id="mainPanel">
-		<p:panel
-			id="summaryPanel"
-			header="#{i18n['employee_summary']}"
-			rendered="#{empty employeeBean.currentEmployee}">
-			<ui:include src="/pages/maintainance_setup/administrator/employee/employee_summary.xhtml" />
-		</p:panel>
 
-		<p:panel
-			id="detailPanel"
-			header="#{i18n['employee_details']}"
-			rendered="#{not empty employeeBean.currentEmployee}">
-			<ui:include src="/pages/maintainance_setup/administrator/employee/employee_details.xhtml" />
-		</p:panel>
-	</p:panel>
+	<p:fragment rendered="#{empty employeeBean.currentEmployee}">
+		<ui:include src="/pages/maintainance_setup/administrator/employee/employee_summary.xhtml" />
+	</p:fragment>
+
+	<p:fragment rendered="#{not empty employeeBean.currentEmployee}">
+		<ui:include src="/pages/maintainance_setup/administrator/employee/employee_details.xhtml" />
+	</p:fragment>
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
+	A<br />
 </ui:composition>

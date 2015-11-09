@@ -37,16 +37,14 @@
 			autoUpdate="true"
 			life="10000" />
 
-		<div id="contentWrapper">
+		<p:panel id="contentWrapper">
 			<ui:insert name="content" />
-		</div>
+		</p:panel>
 
-		<div id="menu">
-			<ui:insert name="menu">
-				<ui:include src="/pages/layout/menu.xhtml" />
-			</ui:insert>
-		</div>
-		
+		<ui:insert name="menu">
+			<ui:include src="/pages/layout/menu.xhtml" />
+		</ui:insert>
+
 	</f:view>
 </h:body>
 

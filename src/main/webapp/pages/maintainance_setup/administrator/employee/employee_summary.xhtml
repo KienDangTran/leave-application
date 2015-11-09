@@ -13,9 +13,15 @@
 			value="#{employeeBean.allEmployees}"
 			rowIndexVar="rowIndex"
 			var="employee"
+			paginator="true"
 			rows="25">
+			<f:facet name="header">
+				<h3>#{i18n['employee_summary']}</h3>
+			</f:facet>
 
-			<p:column headerText="#" width="10px">
+			<p:column
+				headerText="#"
+				width="10px">
 				#{rowIndex + 1}
 			</p:column>
 

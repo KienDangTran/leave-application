@@ -4,19 +4,15 @@
 	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:p="http://primefaces.org/ui"
 	template="/pages/layout/template.xhtml">
+
 	<ui:define name="content">
-
-		<div id="divTop">
-			<div id="divTitle">
-				<h1>Welcome To Leave Application</h1>
-			</div>
-		</div>
 		<div
-			class="mainContentContainer"
-			id="mainPanel">
-
-			<ui:include src="#{navigationBean.page}" />
-
+			class="mainContent"
+			id="pageContent">
+			<div id="pageTitle">
+				<h2>#{navigationBean.pageTitle}</h2>
+			</div>
+			<ui:include src="#{navigationBean.pathToPage}" />
 		</div>
 	</ui:define>
 </ui:composition>

@@ -29,7 +29,8 @@ public class UserSessionBean extends AbtractManagedBean {
 		this.currentUser = (MtUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 	}
 	
-	public void changeTheme() {
+	public void changeTheme(String themeName) {
+		this.currentUser.setTheme(themeName);
 		this.getUserDAO().update(this.getCurrentUser());
 	}
 	

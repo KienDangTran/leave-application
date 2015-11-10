@@ -20,11 +20,6 @@
 		<param-value>.xhtml</param-value>
 	</context-param>
 	<context-param>
-		<description>Spring Security Facelets Tag Library</description>
-		<param-name>javax.faces.FACELETS_LIBRARIES</param-name>
-		<param-value>classpath*:spring/spring-security.taglib.xml</param-value>
-	</context-param>
-	<context-param>
 		<description>Project Stage Level</description>
 		<param-name>javax.faces.PROJECT_STAGE</param-name>
 		<!-- Change to "Production" when you are ready to deploy -->
@@ -44,10 +39,10 @@
 		<param-value>#{userSessionBean.currentUser.theme}</param-value>
 	</context-param>
 	<context-param>
-		<param-name>facelets.SKIP_COMMENTS</param-name>
+		<param-name>javax.faces.FACELETS_SKIP_COMMENTS</param-name>
 		<param-value>true</param-value>
 	</context-param>
-	
+
 	<!-- Spring Security -->
 	<filter>
 		<description>Enable Spring Filter: Spring Security works on the concept of Filters</description>

@@ -1,9 +1,14 @@
 package com.giong.model.mt;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,10 +19,13 @@ import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.SpringSecurityCoreVersion;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.util.Assert;
 import org.springframework.util.StringUtils;
 
 import com.giong.model.BaseEntity;
@@ -58,6 +66,9 @@ public class MtUser extends BaseEntity implements UserDetails {
 	@Column(name = "ENABLED")
 	private boolean enabled = true;
 	
+	@Transient
+	private Set<GrantedAuthority> authorities;
+	
 	
 	//bi-directional one-to-one association to MtEmployee
 	@OneToOne(fetch = FetchType.EAGER)
@@ -70,14 +81,14 @@ public class MtUser extends BaseEntity implements UserDetails {
 	
 	
 	/*
-	 *  CONTRUCTOS
+	 *-----------------------------------------------		CONTRUCTOS				-----------------------------------------------
 	 */
 	public MtUser() {
 	}
 	
 	
 	/*
-	 *  GETTERS & SETTERS
+	 *  -----------------------------------------------		GETTERS & SETTERS		-----------------------------------------------
 	 */
 	public String getUserId() {
 		return this.userId;
@@ -149,30 +160,6 @@ public class MtUser extends BaseEntity implements UserDetails {
 	}
 	
 	@Override
-	public Collection<? extends GrantedAuthority> getAuthorities() {
-		
-		if (this.mtUserRoles.isEmpty()) return Collections.emptyList();
-		
-		final Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-		String roleCode;
-		GrantedAuthority authority;
-		for (final MtUserRole userRole : this.mtUserRoles) {
-			roleCode = userRole.getId().getRoleCode();
-			
-			if (StringUtils.isEmpty(roleCode)) {
-				continue;
-			}
-			
-			authority = new SimpleGrantedAuthority(roleCode);
-			if (!authorities.contains(authority)) {
-				authorities.add(authority);
-			}
-		}
-		
-		return authorities;
-	}
-	
-	@Override
 	public boolean isAccountNonExpired() {
 		return this.accountNonExpired;
 	}
@@ -206,6 +193,111 @@ public class MtUser extends BaseEntity implements UserDetails {
 	
 	public void setEnabled(boolean enabled) {
 		this.enabled = enabled;
+	}
+	
+	@Override
+	public Collection<? extends GrantedAuthority> getAuthorities() {
+		
+		if (this.mtUserRoles == null || this.mtUserRoles.isEmpty()) return Collections.emptySet();
+		//		final Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
+		this.authorities = new TreeSet<GrantedAuthority>(new AuthorityComparator());
+		String roleCode;
+		GrantedAuthority authority;
+		for (final MtUserRole userRole : this.mtUserRoles) {
+			roleCode = userRole.getId().getRoleCode();
+			
+			if (StringUtils.isEmpty(roleCode)) {
+				continue;
+			}
+			
+			authority = new SimpleGrantedAuthority(roleCode);
+			if (!this.authorities.contains(authority)) {
+				this.authorities.add(authority);
+			}
+		}
+		
+		return Collections.unmodifiableSet(MtUser.sortAuthorities(this.authorities));
+	}
+	
+	private static SortedSet<GrantedAuthority> sortAuthorities(Collection<? extends GrantedAuthority> authorities) {
+		Assert.notNull(authorities, "Cannot pass a null GrantedAuthority collection");
+		// Ensure array iteration order is predictable (as per
+		// UserDetails.getAuthorities() contract and SEC-717)
+		final SortedSet<GrantedAuthority> sortedAuthorities = new TreeSet<GrantedAuthority>(new AuthorityComparator());
+		
+		for (final GrantedAuthority grantedAuthority : authorities) {
+			Assert.notNull(grantedAuthority, "GrantedAuthority list cannot contain any null elements");
+			sortedAuthorities.add(grantedAuthority);
+		}
+		
+		return sortedAuthorities;
+	}
+	
+	private static class AuthorityComparator implements Comparator<GrantedAuthority>, Serializable {
+		private static final long serialVersionUID = SpringSecurityCoreVersion.SERIAL_VERSION_UID;
+		
+		@Override
+		public int compare(GrantedAuthority g1, GrantedAuthority g2) {
+			// Neither should ever be null as each entry is checked before adding it to
+			// the set.
+			// If the authority is null, it is a custom authority and should precede
+			// others.
+			if (g2.getAuthority() == null) return -1;
+			
+			if (g1.getAuthority() == null) return 1;
+			
+			return g1.getAuthority().compareTo(g2.getAuthority());
+		}
+	}
+	
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder();
+		sb.append(super.toString()).append(": ");
+		sb.append("Username: ").append(this.username).append("; ");
+		sb.append("Password: [PROTECTED]; ");
+		sb.append("Enabled: ").append(this.enabled).append("; ");
+		sb.append("AccountNonExpired: ").append(this.accountNonExpired).append("; ");
+		sb.append("credentialsNonExpired: ").append(this.credentialsNonExpired).append("; ");
+		sb.append("AccountNonLocked: ").append(this.accountNonLocked).append("; ");
+		
+		if (!this.authorities.isEmpty()) {
+			sb.append("Granted Authorities: ");
+			
+			boolean first = true;
+			for (final GrantedAuthority auth : this.authorities) {
+				if (!first) {
+					sb.append(",");
+				}
+				first = false;
+				
+				sb.append(auth);
+			}
+		}
+		else {
+			sb.append("Not granted any authorities");
+		}
+		
+		return sb.toString();
+	}
+	
+	/**
+	 * Returns {@code true} if the supplied object is a {@code MtUser} instance with the same {@code username} value.
+	 * <p>
+	 * In other words, the objects are equal if they have the same username, representing the same principal.
+	 */
+	@Override
+	public boolean equals(Object rhs) {
+		if (rhs instanceof MtUser) return this.username.equals(((MtUser) rhs).username);
+		return false;
+	}
+	
+	/**
+	 * Returns the hashcode of the {@code username}.
+	 */
+	@Override
+	public int hashCode() {
+		return this.username.hashCode();
 	}
 	
 }

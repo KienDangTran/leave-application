@@ -1,5 +1,5 @@
 html {
-	overflow: hidden;
+	overflow: auto;
 }
 
 h1 {
@@ -43,7 +43,7 @@ h3 {
 	top: 0px;
 	left: 0px;
 	right: 0px;
-	width: 91%;
+	width: 1500px;
 	position: absolute;
 }
 

@@ -3,9 +3,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:sec="http://www.springframework.org/security/tags">
 
-
+	<!-- 	<sec:authorize access="hasRole('ADMIN')"> -->
 	<p:fragment rendered="#{empty employeeBean.currentEmployee}">
 		<ui:include src="/pages/maintainance_setup/administrator/employee/employee_summary.xhtml" />
 	</p:fragment>
@@ -13,4 +14,9 @@
 	<p:fragment rendered="#{not empty employeeBean.currentEmployee}">
 		<ui:include src="/pages/maintainance_setup/administrator/employee/employee_details.xhtml" />
 	</p:fragment>
+	<!-- 	</sec:authorize> -->
+
+	<!-- 	<sec:authorize access="!hasRole('ADMIN')"> -->
+	<!-- 		<h1>403</h1> -->
+	<!-- 	</sec:authorize> -->
 </ui:composition>
